@@ -6,7 +6,7 @@ export function HealthcareFooter() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="font-display text-lg font-bold text-foreground mb-3">Healthcare GCC &amp; RCM Transformation Handbook</h3>
+            <h3 className="font-display text-lg font-bold text-foreground mb-3">Healthcare GCC &amp; Digital Transformation Handbook</h3>
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               The definitive operating playbook for healthcare executives, GCC leaders, and revenue cycle professionals.
             </p>
