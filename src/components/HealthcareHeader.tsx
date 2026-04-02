@@ -27,7 +27,7 @@ export function HealthcareHeader() {
             </div>
             <div>
               <h1 className="font-display text-sm font-bold text-foreground leading-tight">Healthcare GCC</h1>
-              <p className="font-mono text-[10px] text-muted-foreground tracking-wider uppercase">RCM Handbook</p>
+              <p className="font-mono text-[10px] text-muted-foreground tracking-wider uppercase">DX Handbook</p>
             </div>
           </button>
 
