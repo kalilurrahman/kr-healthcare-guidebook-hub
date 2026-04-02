@@ -18,7 +18,7 @@ export function HealthcareFooter() {
               <li>ACUITAS™ Quality Engineering</li>
               <li>CLARITY™ AI Product Management</li>
               <li>Healthcare GCC Maturity Model</li>
-              <li>RCM Transformation Playbook</li>
+              <li>Digital Transformation Playbook</li>
             </ul>
           </div>
           <div>

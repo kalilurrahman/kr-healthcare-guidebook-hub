@@ -42,7 +42,7 @@ export function HeroSection() {
 
         <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
           <span className="gradient-text">Healthcare GCC</span> &amp;
-          <br />RCM Transformation Handbook
+          <br />Digital Transformation Handbook
         </h1>
 
         <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8">
