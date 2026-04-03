@@ -1,10 +1,20 @@
 import { motion } from "framer-motion";
-import { coverStats } from "@/data/pharma-data";
+import { coverStats } from "@/data/healthcare-data";
 
 export function CoverSection() {
   return (
     <section className="gradient-hero relative overflow-hidden min-h-[85vh] flex flex-col items-center justify-center px-6 py-20">
-      {/* Animated molecular background */}
+      <div className="absolute inset-0 opacity-[0.04]">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hex" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
+              <path d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100" fill="none" stroke="hsl(var(--primary))" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hex)" />
+        </svg>
+      </div>
+
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-2 h-2 bg-primary rounded-full animate-pulse-dot" />
         <div className="absolute top-40 right-20 w-3 h-3 bg-primary rounded-full animate-pulse-dot" style={{ animationDelay: "0.5s" }} />
@@ -21,16 +31,16 @@ export function CoverSection() {
       >
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 mb-8">
           <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-dot" />
-          <span className="font-mono text-xs text-primary tracking-wider uppercase">Second Edition · 2025</span>
+          <span className="font-mono text-xs text-primary tracking-wider uppercase">Comprehensive Edition · 2025–2026</span>
         </div>
 
         <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
-          The <span className="gradient-text">Pharma GCC</span>
-          <br />Transformation Handbook
+          <span className="gradient-text">Healthcare GCC</span> &amp;
+          <br />Digital Transformation Handbook
         </h1>
 
-        <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-12">
-          A definitive practitioner's guide to building, scaling, and leading world-class pharmaceutical Global Capability Centres in the AI era.
+        <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8">
+          The definitive operating playbook for healthcare executives, GCC leaders, and revenue cycle professionals — spanning provider, payer, PBM, population health, and AI-enabled capability centers.
         </p>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-px max-w-2xl mx-auto rounded-2xl overflow-hidden glass-card mb-12">
