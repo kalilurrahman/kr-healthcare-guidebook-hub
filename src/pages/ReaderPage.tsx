@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { PharmaHeader } from "@/components/PharmaHeader";
-import { PharmaFooter } from "@/components/PharmaFooter";
+import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { BookOpen, Maximize2, Minimize2, ChevronUp } from "lucide-react";
 
 const ReaderPage = () => {
@@ -39,7 +38,7 @@ const ReaderPage = () => {
               <div className="flex items-center gap-3">
                 <BookOpen className="w-5 h-5 text-primary" />
                 <span className="font-display text-sm font-bold text-foreground hidden sm:inline">
-                  Online Reader — Comprehensive Edition 2025
+                  Online Reader — Healthcare Digital Transformation 2025
                 </span>
                 <span className="font-display text-sm font-bold text-foreground sm:hidden">
                   Reader Mode
@@ -69,8 +68,8 @@ const ReaderPage = () => {
         )}
         <iframe
           ref={iframeRef}
-          src="/handbook-reader.html"
-          title="Pharma Digital Transformation Handbook — Online Reader"
+          src="/healthcare-reader.html"
+          title="Healthcare Digital Transformation Handbook — Online Reader"
           className="w-full border-0"
           style={{
             height: isFullscreen ? "100vh" : "calc(100vh - 3.5rem)",
@@ -80,7 +79,7 @@ const ReaderPage = () => {
         />
       </main>
 
-      {!isFullscreen && <PharmaFooter />}
+      {!isFullscreen && <HealthcareFooter />}
 
       {showScrollTop && !isFullscreen && (
         <button
