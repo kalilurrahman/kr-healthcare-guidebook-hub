@@ -1,44 +1,47 @@
 import { motion } from "framer-motion";
 import { Download, FileText, File, Star } from "lucide-react";
-import type { ResourceFile } from "@/types/pharma.types";
 
-const resources: (ResourceFile & { primary?: boolean })[] = [
+interface ResourceItem {
+  name: string;
+  filename: string;
+  type: string;
+  size: string;
+  description: string;
+  primary?: boolean;
+  isLink?: boolean;
+}
+
+const resources: ResourceItem[] = [
   {
-    name: "Pharma DX Handbook — Master HTML (Primary)",
-    filename: "Pharma_DX_Handbook_Comprehensive_2025.html",
-    type: "pdf" as ResourceFile["type"],
-    size: "~2.6 MB",
-    description: "The single source of truth. Self-contained HTML with sidebar navigation, SVG diagrams, search, reading progress, and all 30 chapters across 9 parts.",
+    name: "Healthcare GCC Handbook — Online Reader (HTML)",
+    filename: "/reader",
+    type: "html",
+    size: "60 Chapters",
+    description: "The self-contained interactive HTML reader with all 60 strategic chapters, sidebar navigation, search, and reading progress — zero dependencies required.",
     primary: true,
+    isLink: true,
   },
   {
-    name: "Pharma DX Handbook Ultimate 2026 v1.1 (PDF)",
-    filename: "Pharma_DX_Handbook_Ultimate_2026_v_1_1.pdf",
-    type: "pdf",
-    size: "~5 MB",
-    description: "Complete PDF edition — all chapters with diagrams, tables, and regional spotlights. Ideal for printing and formal distribution.",
-  },
-  {
-    name: "Pharma DX Handbook Ultimate 2026 v1.1 (DOCX)",
-    filename: "Pharma_DX_Handbook_Ultimate_2026_v_1_1.docx",
+    name: "Healthcare GCC Handbook — Comprehensive DOCX",
+    filename: "KR_HC_GG.docx",
     type: "docx",
-    size: "~2 MB",
-    description: "Editable Word document for annotations, customisation, and internal distribution.",
+    size: "~3 MB",
+    description: "Full editable Word document with all 30 strategic chapters, tables, diagrams, and executive summaries for annotation and internal distribution.",
   },
 ];
 
-const iconMap = {
-  pdf: <FileText className="w-6 h-6" />,
+const iconMap: Record<string, React.ReactNode> = {
+  html: <FileText className="w-6 h-6" />,
   docx: <File className="w-6 h-6" />,
-  xlsx: <File className="w-6 h-6" />,
-  pptx: <File className="w-6 h-6" />,
+  pdf: <FileText className="w-6 h-6" />,
+  zip: <File className="w-6 h-6" />,
 };
 
-const colorMap = {
-  pdf: "text-coral",
+const colorMap: Record<string, string> = {
+  html: "text-primary",
   docx: "text-indigo",
-  xlsx: "text-teal",
-  pptx: "text-gold",
+  pdf: "text-coral",
+  zip: "text-gold",
 };
 
 export function ResourcesSection() {
@@ -47,7 +50,7 @@ export function ResourcesSection() {
       <div className="mb-8">
         <h2 className="font-display text-2xl font-bold text-foreground mb-2">📥 Downloadable Resources</h2>
         <p className="font-body text-muted-foreground">
-          Download the full handbook in multiple formats. The Master HTML is the canonical, always-current edition.
+          Download the full handbook in multiple formats. The Online Reader HTML is the canonical, always-current edition.
         </p>
       </div>
 
@@ -55,16 +58,16 @@ export function ResourcesSection() {
         {resources.map((res, i) => (
           <motion.a
             key={res.filename}
-            href={`/resources/${res.filename}`}
-            download
+            href={res.isLink ? res.filename : `/resources/${res.filename}`}
+            {...(res.isLink ? {} : { download: true })}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
             className={`card-pharma group flex flex-col gap-4 no-underline ${res.primary ? "border-primary/50 ring-1 ring-primary/20 sm:col-span-2" : ""}`}
           >
             <div className="flex items-start gap-4">
-              <div className={`p-3 rounded-lg bg-muted ${colorMap[res.type]}`}>
-                {iconMap[res.type]}
+              <div className={`p-3 rounded-lg bg-muted ${colorMap[res.type] ?? "text-primary"}`}>
+                {iconMap[res.type] ?? <File className="w-6 h-6" />}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
@@ -87,7 +90,7 @@ export function ResourcesSection() {
             </div>
             <div className="flex items-center gap-2 text-primary font-mono text-xs group-hover:translate-x-1 transition-transform">
               <Download className="w-3.5 h-3.5" />
-              Download {res.type.toUpperCase()}
+              {res.isLink ? "Open Reader" : `Download ${res.type.toUpperCase()}`}
             </div>
           </motion.a>
         ))}
@@ -99,10 +102,9 @@ export function ResourcesSection() {
           <a href="https://kalilurrahman.lovable.app" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
             Kalilur Rahman
           </a>
-          {" "}· Pharma Digital Transformation Handbook — Comprehensive Edition 2025
+          {" "}· Healthcare GCC &amp; Digital Transformation Handbook — Comprehensive Edition 2025
         </p>
       </div>
     </div>
   );
 }
-
