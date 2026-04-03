@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Healthcare Digital Transformation — Strategic Perspectives 2025</title>
+<style>
+:root {
+  --navy: #0A192F;
+  --teal: #1A3C40;
+  --gold: #C9A84C;
+  --bg: #F8FAFB;
+  --white: #FFFFFF;
+  --text: #1A202C;
+  --muted: #718096;
+  --sidebar-w: 320px;
+  --radius: 8px;
+  --shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: 'Inter', -apple-system, system-ui, sans-serif; 
+  background: var(--bg); 
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── SIDEBAR ── */
+#sidebar {
+  width: var(--sidebar-w);
+  background: var(--navy);
+  color: white;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.brand { padding: 40px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.brand h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 800; }
+.brand p { font-size: 0.7rem; opacity: 0.5; margin-top: 6px; }
+
+.search-box { padding: 15px 25px; }
+#search-input {
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  color: white;
+  outline: none;
+  font-size: 0.8rem;
+}
+
+.nav-menu { flex: 1; padding: 10px 0; overflow-y: auto; }
+.nav-group { padding: 15px 25px 5px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.3); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 15px; }
+.nav-link {
+  display: flex;
+  padding: 10px 25px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.82rem;
+  border-left: 3px solid transparent;
+  transition: 0.2s;
+}
+.nav-link:hover { color: white; background: rgba(255,255,255,0.03); }
+.nav-link.active {
+  background: rgba(255,255,255,0.08);
+  border-left-color: var(--gold);
+  color: white;
+  font-weight: 600;
+}
+
+/* ── CONTENT AREA ── */
+#main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  padding: 60px 8%;
+  max-width: 1400px;
+}
+
+.chapter { display: none; animation: fadeIn 0.5s ease forwards; }
+.chapter.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── UI COMPONENTS ── */
+h1 { font-size: 2.8rem; color: var(--navy); margin-bottom: 12px; font-weight: 800; letter-spacing: -1px; }
+.ch-meta { display: flex; gap: 10px; margin-bottom: 30px; align-items: center; }
+.badge { padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+.badge-gold { background: #FCF5E5; color: #9E7E2C; }
+.badge-teal { background: #E6F0F0; color: #1A3C40; }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin: 40px 0;
+}
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--gold);
+}
+.stat-card h4 { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+.stat-card .val { font-size: 2rem; font-weight: 900; color: var(--navy); }
+.stat-card .sub { font-size: 0.8rem; margin-top: 5px; color: var(--muted); }
+
+.visual-box {
+  width: 100%;
+  height: 450px;
+  background: #E2E8F0;
+  border-radius: var(--radius);
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.ai-img { width: 100%; height: 100%; object-fit: cover; }
+
+.callout {
+  background: #EBF4F5;
+  border-left: 6px solid var(--teal);
+  padding: 30px;
+  margin: 40px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.callout h3 { font-size: 1.3rem; margin-bottom: 12px; color: var(--teal); }
+
+.action-list { list-style: none; margin: 30px 0; }
+.action-list li { 
+  background: white; padding: 18px; margin-bottom: 12px; border-radius: var(--radius);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03); display: flex; align-items: flex-start; gap: 15px;
+}
+.action-list li::before { content: "→"; color: var(--gold); font-weight: 900; }
+
+.footer-nav {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+}
+.btn {
+  padding: 12px 24px;
+  background: var(--navy);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover { background: var(--teal); }
+
+/* Mobile Navigation */
+.mobile-toggle { display: none; position: fixed; top: 20px; right: 20px; z-index: 2000; background: var(--navy); color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; }
+@media (max-width: 1024px) {
+  #sidebar { transform: translateX(-100%); }
+  #sidebar.open { transform: translateX(0); }
+  #main { margin-left: 0; padding: 40px 20px; }
+  .mobile-toggle { display: block; }
+}
+
+.loader { display: flex; flex-direction: column; align-items: center; color: var(--muted); }
+.spinner { width: 30px; height: 30px; border: 3px solid #cbd5e0; border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 10px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">MENU</button>
+
+<aside id="sidebar">
+  <div class="brand">
+    <h2>Strategic Perspectives</h2>
+    <p>Healthcare Digital Transformation 2025</p>
+  </div>
+  
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Search strategy..." onkeyup="searchPlaybook()">
+  </div>
+
+  <nav class="nav-menu" id="nav-menu">
+    <!-- NAV GENERATED BY JS -->
+  </nav>
+</aside>
+
+<main id="main">
+  <!-- CHAPTERS GENERATED BY JS -->
+</main>
+
+<script>
+const apiKey = ""; // Set by environment
+
+const playbookData = [
+  {
+    group: "Volume 1: Market & Economic Landscape",
+    chapters: [
+      { id: "ch1", title: "The Structural Transformation", stats: [{ l: "NHE EBITDA 2024", v: "8.9%" }, { l: "2019 Baseline", v: "11.2%" }], content: "The healthcare industry is navigating a period of profound structural transformation. United States healthcare earnings (EBITDA) as a percentage of NHE fell from 11.2% in 2019 to 8.9% in 2024, reset by labor costs and reimbursement gaps.", actions: ["Audit margin leakage in acute care", "Stabilize core volumes", "Benchmark against 8.9% sector average"] },
+      { id: "ch2", title: "The 2027 Financial Floor", stats: [{ l: "2027 Projection", v: "8.7%" }, { l: "Margin Gap", v: "-2.5%" }], content: "Projections indicate that this financial picture will worsen slightly by 2027, with industry EBITDA expected to drop to 8.7 percent of NHE. Success depends on absorbing inflationary pressures through automation.", actions: ["Stress test 2027 budget scenarios", "Identify low-margin sunset lines", "Accelerate non-acute revenue"] },
+      { id: "ch3", title: "Payer Mix & Reimbursement", stats: [{ l: "Gov. Enrollment", v: "45%" }, { l: "Enrollment ∆", v: "+2%" }], content: "Medicare and Medicaid enrollment grew from 43% in 2019 to 45% in 2023. This shift toward governmental payers constrains reimbursement growth and necessitates risk-based contracting excellence.", actions: ["Optimize Medicare Advantage capture", "Negotiate risk-based Medicaid deals", "Protect commercial volume share"] },
+      { id: "ch4", title: "Executive Sentiment Pivot", stats: [{ l: "Favorable View", v: "60%" }, { l: "Confidence ∆", v: "+8%" }], content: "Despite margin compression, 60% of healthcare executives express a favorable outlook for 2025. This surge in confidence stems from the belief that stabilization and technology spend are yielding results.", actions: ["Leverage board support for HST growth", "Shift focus from survival to scaling", "Audit 2025 growth investment plans"] },
+      { id: "ch5", title: "Healthcare Software Surge", stats: [{ l: "Tech Spend ↑", v: "69%" }, { l: "Investment Rank", v: "#1" }], content: "69% of US healthcare executives plan to increase software and technology investments. The shift is moving from legacy 'support' software to 'growth' and 'efficiency' software that drives RCM and clinical documentation.", actions: ["Prioritize workflow documentation AI", "Audit legacy software maintenance", "Invest in interoperable data lakes"] }
+    ]
+  },
+  {
+    group: "Volume 2: Domain Deep Dives",
+    chapters: [
+      { id: "ch6", title: "Provider Domain Architecture", stats: [{ l: "System Focus", v: "Integration" }, { l: "Complexity", v: "High" }], content: "The provider landscape is consolidating. Multi-hospital systems are moving toward 'Integrated Delivery Networks' (IDNs) to capture lives across the entire care continuum, from acute to post-acute.", actions: ["Map system-wide patient journeys", "Consolidate fragmented data silos", "Audit clinical pathway variance"] },
+      { id: "ch7", title: "Payer & Health Plan Dynamics", stats: [{ l: "MLR Pressure", v: "Extreme" }, { l: "Admin Cost", v: "▼ Reduct" }], content: "Payers are under extreme Medical Loss Ratio (MLR) pressure. Digital transformation focuses on reducing administrative costs and improving clinical documentation integrity to ensure proper risk adjustment.", actions: ["Implement automated prior auth", "Enhance risk-adjustment accuracy", "Build member engagement portals"] },
+      { id: "ch8", title: "PBM & Specialty Pharmacy", stats: [{ l: "Growth Rank", v: "#1" }, { l: "Margin Cont.", v: "35%" }], content: "Specialty pharmacy is the fastest-growing segment of the pharmacy benefit. Managing biologics and cell therapies requires ultra-cold chain logistics and real-time clinical tracking to manage costs.", actions: ["Expand internal specialty pharmacy", "Build cold-chain logistics hubs", "Link pharmacy data to clinical records"] },
+      { id: "ch9", title: "Care Management & Pop Health", stats: [{ l: "ROI Ratio", v: "1:4" }, { l: "Outcome Focus", v: "Proactive" }], content: "Population health moves from reactive management to proactive risk identification. AI identifies the 'impactable' patients who benefit most from home-based interventions.", actions: ["Deploy predictive risk modeling", "Invest in remote patient monitoring", "Scale community-based health outreach"] },
+      { id: "ch10", title: "The Post-Acute Ecosystem", stats: [{ l: "Vol. Shift", v: "Outpatient" }, { l: "Home Health", v: "+15%" }], content: "Post-acute care is the most critical lever for reducing 30-day readmissions. The strategy shifts from SNFs to home-based recovery models supported by tech-enabled nurse monitoring.", actions: ["Partner with home health tech", "Reduce SNF length of stay", "Monitor vitals via RPM post-discharge"] }
+    ]
+  },
+  {
+    group: "Volume 3: RCM & GCC Transformation",
+    chapters: [
+      { id: "ch11", title: "RCM Architecture Deep Dive", stats: [{ l: "Process Stages", v: "9 Core" }, { l: "Automation Pot.", v: "80%" }], content: "Revenue Cycle Management (RCM) is being re-architected. The legacy linear model is replaced by a circular data model where clinical documentation drives immediate patient access and billing updates.", actions: ["Map end-to-end RCM data flows", "Identify manual touchpoint leaks", "Align clinical CDI with billing CDI"] },
+      { id: "ch12", title: "Patient Access & Scheduling", stats: [{ l: "Abandon Rate", v: "Target <5%" }, { l: "Pre-Auth Acc.", v: "98%" }], content: "Patient Access is the new front door. Automating scheduling and eligibility verification reduces denials at the source. AI-driven pre-auth prevents 90% of front-end denials.", actions: ["Implement self-scheduling bots", "Automate eligibility verification", "Link scheduling to pre-auth status"] },
+      { id: "ch13", title: "Coding & CDI Excellence", stats: [{ l: "Coding Acc.", v: "Target 95%" }, { l: "Denial Reduct.", v: "15%" }], content: "Clinical Documentation Integrity (CDI) is the bridge between care and payment. AI documentation tools ensure that the acuity of the patient is accurately reflected in the medical record.", actions: ["Deploy ambient AI for documentation", "Implement real-time coding audits", "Train staff on CDI specificity"] },
+      { id: "ch14", title: "Claims & Adjudication Logic", stats: [{ l: "First Pass", v: "Target 90%" }, { l: "Clean Claim", v: "Essential" }], content: "Adjudication logic is increasingly complex. Moving to 'clean claim' submittal requires automated scrubbers that use payer-specific rules to catch errors before submission.", actions: ["Update scrubbers with payer rules", "Monitor first-pass acceptance rates", "Reduce manual claim intervention"] },
+      { id: "ch15", title: "Denials & Appeals Management", stats: [{ l: "Denial Rate", v: "Target <4%" }, { l: "Appeal ROI", v: "High" }], content: "Denials management is shifting to denial prevention. AI analyzes historical denial data to identify root causes in documentation or eligibility and fixes them upstream.", actions: ["Run root-cause denial analytics", "Automate standardized appeals", "Measure denial recovery velocity"] },
+      { id: "ch16", title: "Healthcare GCC Operating Models", stats: [{ l: "Talent Pool", v: "India/Global" }, { l: "Cost Saving", v: "30-50%" }], content: "Global Capability Centers (GCCs) are evolving from simple outsourcing to specialized centers of excellence. The focus is on hybrid talent that understands both RCM and clinical coding.", actions: ["Evaluate India GCC setup feasibility", "Define governance & compliance", "Target high-complexity RCM offshoring"] },
+      { id: "ch17", title: "RCM Benchmarking & Analytics", stats: [{ l: "AR Days", v: "Target <35" }, { l: "Cost to Coll.", v: "<3%" }], content: "Benchmarking RCM performance requires real-time dashboards for AR days, cash collections, and cost-to-collect. Data must be transparent across the executive leadership team.", actions: ["Build executive RCM dashboard", "Monitor AR aging by payer", "Benchmark against 3% collection cost"] }
+    ]
+  },
+  {
+    group: "Volume 4: Clinical Innovation (Respiratory)",
+    chapters: [
+      { id: "ch18", title: "The $4.3 Trillion Crisis", stats: [{ l: "Global Cost", v: "$4.3T" }, { l: "Target Date", v: "2050" }], content: "The global economic burden of Chronic Obstructive Pulmonary Disease (COPD) is projected to increase to an astounding $4.3 trillion by 2050. Reactive care is no longer fiscally viable.", actions: ["Shift to proactive care models", "Adopt high-volume RPM for COPD", "Audit readmission rates for respiratory"] },
+      { id: "ch19", title: "Device-to-Data Transition", stats: [{ l: "Platform", v: "IoT Hub" }, { l: "Connectivity", v: "99%" }], content: "Pulmonology devices are evolving from simple drug delivery to IoT data hubs. These devices track adherence and environmental triggers (pollen/pollution) in real-time.", actions: ["Deploy smart inhalers", "Link device data to EHR", "Monitor environmental trigger alerts"] },
+      { id: "ch20", title: "Advanced RPM Deployment", stats: [{ l: "ROI Ratio", v: "1:4" }, { l: "Scale Target", v: "10k Patients" }], content: "Remote Patient Monitoring (RPM) for respiratory care shows a 1:4 ROI by preventing emergency visits. Strategic focus relies on portable nebulizers and integrated monitoring platforms.", actions: ["Pilot RPM in high-risk zip codes", "Measure 30-day readmission reduction", "Scale to all chronic cohorts"] },
+      { id: "ch21", title: "Environmental Trigger Analytics", stats: [{ l: "Prediction", v: "48h" }, { l: "Acc. Target", v: "85%" }], content: "Combining drug delivery with environmental tracking allows clinicians to predict flare-ups 48 hours before they occur, triggering preventative care via telehealth.", actions: ["Integrate local AQI data with RPM", "Enable automated patient alerts", "Proactively adjust care plans seasonally"] },
+      { id: "ch22", title: "Respiratory Care Outcomes", stats: [{ l: "Mortality ↓", v: "Target -10%" }, { l: "Adherence ↑", v: "25%" }], content: "Long-term clinical excellence in respiratory care depends on data-driven adherence. Knowing exactly how a patient uses an inhaler allows for precise clinical coaching.", actions: ["Set 3-year mortality reduction goals", "Monitor adherence heatmaps", "Partner with payers on pulmonary bundles"] }
+    ]
+  },
+  {
+    group: "Volume 5: AI, Automation & Droidal",
+    chapters: [
+      { id: "ch23", title: "AI-Enabled Operating Models", stats: [{ l: "Automation Lvl", v: "70%" }, { l: "Productivity ↑", v: "35%" }], content: "The 'AI-first' operating model moves beyond simple automation to autonomous agents. AI handles routine tasks while humans shift to 'exception management' and quality oversight.", actions: ["Define autonomous agent workflows", "Identify exception-only tasks", "Audit AI decision accuracy"] },
+      { id: "ch24", title: "Droidal AI: Training Day 1-2", stats: [{ l: "Fundamentals", v: "Day 1" }, { l: "PDD Creation", v: "Day 2" }], content: "Implementing autonomous agents like Droidal requires a structured onboarding. Day 1 focuses on agent capabilities; Day 2 on mapping current screen workflows into Process Definition Documents (PDDs).", actions: ["Conduct Droidal capability audit", "Map screen-level manual workflows", "Draft Day 2 PDD for claims creation"] },
+      { id: "ch25", title: "Droidal AI: Training Day 3-5", stats: [{ l: "Managing AI", v: "Day 3" }, { l: "Go-Live Prep", v: "Day 5" }], content: "Finalizing the transition involves training staff to manage the AI agent dashboard. By Day 5, staff shift from 'doers' to 'AI managers' focused on quality metrics and escalation handling.", actions: ["Train staff on dashboard monitoring", "Setup exception override protocols", "Run Day 5 go-live checklist"] },
+      { id: "ch26", title: "Ambient AI in Clinical Care", stats: [{ l: "Time Saved", v: "2h/Shift" }, { l: "Doc. Burden ↓", v: "-60%" }], content: "Ambient AI documentation is the primary lever for clinician retention. These tools listen to patient encounters and draft notes automatically, eliminating 'pajama time' for doctors.", actions: ["Pilot ambient AI in high-burnout units", "Measure time-to-documentation", "Scale to primary and specialized care"] },
+      { id: "ch27", title: "Predictive AI Diagnostics", stats: [{ l: "Early Alert", v: "72h" }, { l: "Clinical Use", v: "High" }], content: "Machine learning models identify patients at risk of chronic decompensation 72 hours before visible symptoms. This allows for outpatient intervention, avoiding the ER.", actions: ["Integrate predictive ML for COPD/HF", "Setup automated clinical flags", "Reduce false-positive alert fatigue"] },
+      { id: "ch28", title: "RPA in Admin Workflows", stats: [{ l: "Prior Auth", v: "Automated" }, { l: "Error Rate", v: "Minimal" }], content: "Robotic Process Automation (RPA) handles high-volume, low-complexity admin tasks like prior authorizations and routine data entry, freeing up human capital for complex appeals.", actions: ["Automate high-volume prior auths", "Deploy RCM billing bots", "Audit RPA accuracy monthly"] },
+      { id: "ch29", title: "The 'AI-Manager' Skillset", stats: [{ l: "Role Pivot", v: "Extreme" }, { l: "Training", v: "Required" }], content: "The workforce must transition from manual processing to AI management. Training focuses on data oversight, exception logic, and continuous AI improvement loops.", actions: ["Redesign job descriptions for AI-era", "Launch digital upskilling program", "Incentivize AI-driven productivity gains"] },
+      { id: "ch30", title: "Ethical AI & Governance", stats: [{ l: "Bias Check", v: "Quarterly" }, { l: "Compliance", v: "High" }], content: "AI governance requires strict compliance and bias monitoring. Algorithms must be auditable and transparent to ensure clinical equity and regulatory adherence.", actions: ["Form AI ethics committee", "Run quarterly bias audits", "Ensure transparent ML logic"] }
+    ]
+  },
+  {
+    group: "Volume 6: Operational Efficiency",
+    chapters: [
+      { id: "ch31", title: "Top-of-License Practice", stats: [{ l: "Clinical Time", v: "Maximized" }, { l: "Admin Work", v: "▼ Reduct" }], content: "Staffing shortages require that every clinician works at the 'top of their license.' Administrative tasks are offloaded to AI or assistants to maximize patient time.", actions: ["Map task distribution by license", "Offload admin tasks to AI", "Benchmark clinician 'at-bedside' time"] },
+      { id: "ch32", title: "Clinical Command Centers", stats: [{ l: "LOS Reduct.", v: "-0.5 days" }, { l: "Capacity ↑", v: "15%" }], content: "Using real-time dashboards to manage bed capacity, discharge velocity, and ER surges across a multi-hospital system. This increases throughput without building new beds.", actions: ["Deploy centralized capacity hub", "Automate discharge tracking", "Predict ER surges 24h in advance"] },
+      { id: "ch33", title: "Home-Based Hospitalization", stats: [{ l: "Bed Cost ↓", v: "-40%" }, { l: "Patient Sat", v: "+20%" }], content: "Technology enables the treatment of high-acuity patients in their homes. Hospital-at-home models reduce HAI risks and cost-to-serve while improving the patient experience.", actions: ["Pilot home-hosp for respiratory", "Invest in portable diagnostics", "Link home monitors to Command Center"] },
+      { id: "ch34", title: "Credentialing & Enrollment", stats: [{ l: "Cycle Time ↓", v: "30%" }, { l: "Revenue Lag", v: "Reduced" }], content: "Provider enrollment and credentialing are massive bottlenecks for revenue. Automating primary source verification reduces the time-to-bill for new clinicians.", actions: ["Automate primary source verification", "Centralize system credentialing", "Reduce enrollment cycle times"] },
+      { id: "ch35", title: "Governance & Compliance", stats: [{ l: "Risk Level", v: "Moderate" }, { l: "Audit Freq", v: "Monthly" }], content: "Governance structures for GCCs and integrated networks must be centralized. Monthly audits ensure that RCM and clinical documentation follow evolving payer rules.", actions: ["Centralize network governance", "Conduct monthly compliance audits", "Update rules in real-time for RCM"] },
+      { id: "ch36", title: "Talent & GCC Setup Guide", stats: [{ l: "Timeline", v: "6 Months" }, { l: "Stability", v: "Target Yr 1" }], content: "Setting up a GCC requires a phased approach: Talent acquisition, governance definition, pilot workflows, and then scaling to full operations by month 12.", actions: ["Design GCC roadmap (Phase 1-3)", "Secure India-based facility/talent", "Run pilot workflows in month 4"] },
+      { id: "ch37", title: "Clinical Documentation Integrity (CDI)", stats: [{ l: "Specificty ↑", v: "High" }, { l: "Case Mix ↑", v: "Significant" }], content: "CDI is the bridge between care and reimbursement. High-fidelity documentation ensures the system is compensated for the actual complexity of care provided.", actions: ["Audit documentation specificity", "Incentivize CDI accuracy", "Link CDI to CMI outcomes"] },
+      { id: "ch38", title: "Financial Future-Proofing", stats: [{ l: "EBITDA Floor", v: "8.7%" }, { l: "Cash Flow", v: "Positive" }], content: "Future-proofing requires finding the floor at 8.7% EBITDA while aggressively pivoting to HST segments. Organizations must remain cash-flow positive through the transition.", actions: ["Reinvest savings in HST", "Monitor service-line profitability", "Build 5-year cash reserves"] },
+      { id: "ch39", title: "M&A Strategy: HST Focus", stats: [{ l: "Target Type", v: "Software" }, { l: "PE Deal Vol", v: "Rising" }], content: "Mergers and acquisitions shift from physical assets to software and non-acute care hubs. Systems are buying tech-enabled platforms to consolidate market share.", actions: ["Identify regional digital-first targets", "Evaluate buy-vs-build for analytics", "Conduct due diligence on HST startups"] },
+      { id: "ch40", title: "Retail Health Competition", stats: [{ l: "Market Threat", v: "CVS/Amazon" }, { l: "Focus", v: "High Acuity" }], content: "Retailers capturing low-acuity volumes forces traditional systems to focus on high-acuity specialized care. Strategy must emphasize complexity and integration.", actions: ["Partner with retail clinics", "Pivot system to high-acuity", "Enhance digital engagement"] }
+    ]
+  },
+  {
+    group: "Volume 7: Specialized Growth & Precision",
+    chapters: [
+      { id: "ch41", title: "Specialty Pharmacy ROI", stats: [{ l: "Margin Share", v: "35%" }, { l: "Growth", v: "High" }], content: "Specialty pharmacy manages the highest complexity medications. Success requires integrated data loops where clinicians see therapy efficacy in real-time.", actions: ["Build specialty drug data loops", "Monitor therapy adherence", "Negotiate direct-to-payer drug deals"] },
+      { id: "ch42", title: "Precision Medicine Pipelines", stats: [{ l: "Pipe Growth", v: "25%" }, { l: "Cost", v: "Extreme" }], content: "Cell and gene therapies are moving to the clinic. These require specialized cold-chain logistics and precise patient tracking across multi-year therapy cycles.", actions: ["Establish Centers of Excellence", "Integrate genomics into EHR", "Build multi-year tracking hubs"] },
+      { id: "ch43", title: "Home Health Adherence", stats: [{ l: "Adherence ↑", v: "30%" }, { l: "Readmiss ↓", v: "Significant" }], content: "Using digital coaching and smart devices to ensure patients follow care plans at home. This is the primary driver for outcome-based reimbursement models.", actions: ["Deploy digital health coaches", "Incentivize patient adherence", "Track home outcomes daily"] },
+      { id: "ch44", title: "Value-Based Respiratory Bundles", stats: [{ l: "Model", v: "Risk-Based" }, { l: "Goal", v: "Outcome" }], content: "Payers and providers are partnering on COPD bundles. Providers are paid for keeping patients out of the hospital, incentivizing the use of RPM and smart devices.", actions: ["Negotiate bundled COPD payments", "Measure cost-per-life for respiratory", "Invest in preventative respiratory RPM"] },
+      { id: "ch45", title: "India GCC Benchmarks", stats: [{ l: "GCC FTE", v: "Target 500+" }, { l: "Cost ∆", v: "-40%" }], content: "Benchmarking the India GCC model against US-based operations. India-based centers now handle high-complexity coding and analytics, not just basic billing.", actions: ["Benchmark GCC RCM performance", "Audit GCC coding accuracy", "Scale GCC to specialized analytics"] },
+      { id: "ch46", title: "Specialty Payer Negotiation", stats: [{ l: "Negotiation", v: "Critical" }, { l: "Leverage", v: "Data" }], content: "Using high-fidelity clinical data to negotiate better rates for specialty pharmacy and precision medicine. Proof of outcome is the new negotiation currency.", actions: ["Build outcome-based data decks", "Prove specialized care value", "Negotiate direct drug access"] },
+      { id: "ch47", title: "Diagnostics & Imaging ROI", stats: [{ l: "Util Rate", v: "95%" }, { l: "Revenue Lag", v: "Minimal" }], content: "Optimizing the utilization of high-cost diagnostic assets. Lean scheduling and AI-driven imaging reads ensure that imaging is a profit center, not a bottleneck.", actions: ["Apply lean to imaging scheduling", "Deploy AI for faster radiology reads", "Reduce imaging pre-auth wait time"] },
+      { id: "ch48", title: "Surgical Workflow Optimization", stats: [{ l: "OR Turnover", v: "-10 min" }, { l: "Capacity ↑", v: "High" }], content: "Surgical care is the core margin driver. Optimizing OR turnover time and perioperative workflows ensures that the highest-revenue assets are maximized.", actions: ["Optimize OR turnover protocols", "Implement perioperative dashboards", "Reduce day-of-surgery cancellations"] }
+    ]
+  },
+  {
+    group: "Volume 8: The 2030 Roadmap",
+    chapters: [
+      { id: "ch49", title: "Default-Home Care Vision", stats: [{ l: "2030 Vision", v: "Home-First" }, { l: "Bed Count ↓", v: "-25%" }], content: "By 2030, the healthcare system is 'Default Home.' The hospital becomes a specialized surgery and intensive care center, with all other care happening at home.", actions: ["Redesign pathways for Home-First", "Phase out legacy physical spend", "Invest in permanent home monitoring"] },
+      { id: "ch50", title: "90-Day Implementation Guide", stats: [{ l: "Phase 1", v: "Audit" }, { l: "Phase 3", v: "Scale" }], content: "The immediate implementation roadmap: Month 1: Audit digital maturity. Month 2: Pilot ambient AI & RPM. Month 3: Scale early wins to specialized units.", actions: ["Form 90-day execution committee", "Identify early-win pilot units", "Allocate implementation budget"] },
+      { id: "ch51", title: "Measuring Digital Maturity", stats: [{ l: "Target Level", v: "5" }, { l: "Benchmark", v: "Peer Group" }], content: "Success is measured by how technology is used by clinicians, not just purchased. High digital maturity correlates directly with lower burnout and higher margins.", actions: ["Conduct annual digital maturity audit", "Tie tech usage to clinical KPIs", "Benchmark against industry leaders"] },
+      { id: "ch52", title: "The 2030 Clinical Workforce", stats: [{ l: "Staff Mix", v: "Hybrid AI" }, { l: "Training", v: "Digital" }], content: "The 2030 clinician is 'AI-Native.' Redesigning medical and nursing education to focus on data management, virtual care delivery, and AI exception handling.", actions: ["Launch digital clinical curriculum", "Hire Digital Liaison Clinicians", "Redesign residency for virtual care"] },
+      { id: "ch53", title: "Closing Strategic Summary", stats: [{ l: "Goal", v: "Sustainability" }, { l: "Timeline", v: "3-5 Years" }], content: "The roadmap to a sustainable healthcare future: Ruthless core efficiency, rapid tech adoption, and a complete pivot to non-acute and specialized care.", actions: ["Publish 5-year strategy map", "Align board on digital first", "Communicate vision to all units"] },
+      { id: "ch54", title: "Specialty Genomics Integration", stats: [{ l: "Genomics", v: "Standard" }, { l: "Cost ↓", v: "Significant" }], content: "Incorporate genomics into standard clinical protocols. This enables precision diagnostics and pharmacogenomics to reduce adverse drug events and improve outcomes.", actions: ["Integrate genomics into the EHR", "Train staff on precision medicine", "Audit genomic protocol efficacy"] },
+      { id: "ch55", title: "Clinical documentation integrity", stats: [{ l: "Integrity", v: "Paramount" }, { l: "Accuracy", v: "High" }], content: "Ensuring that the clinical record is an accurate, high-fidelity representation of the patient's condition. This is the cornerstone of risk adjustment and value-based care.", actions: ["Review CDI quarterly", "Update coding guidelines", "Engage clinical staff in CDI"] },
+      { id: "ch56", title: "Revenue Cycle Management Architecture", stats: [{ l: "RCM Arch", v: "Integrated" }, { l: "Velocity", v: "Fast" }], content: "The modern RCM architecture is integrated with clinical care. Data flows seamlessly from patient access through coding to final adjudication and payment.", actions: ["Review RCM architectural gaps", "Deploy integrated RCM software", "Monitor RCM velocity daily"] },
+      { id: "ch57", title: "Analytics, benchmarking, and performance", stats: [{ l: "Analytics", v: "Deep" }, { l: "Performance", v: "Target" }], content: "Performance improvement depends on deep analytics. Real-time benchmarking allows the organization to pivot when clinical or financial metrics drift from the target.", actions: ["Deploy real-time analytics hub", "Set system-wide benchmarks", "Review performance monthly"] },
+      { id: "ch58", title: "India healthcare analytics market outlook", stats: [{ l: "India Mkt", v: "Growing" }, { l: "Talent", v: "Abundant" }], content: "India is the global hub for healthcare analytics. Leveraging this talent allows for sophisticated population health modeling and RCM analytics at scale.", actions: ["Expand India analytics hub", "Recruit specialized health data scientists", "Scale analytics to pop health"] },
+      { id: "ch59", title: "India home healthcare market outlook", stats: [{ l: "Home Mkt", v: "Emerging" }, { l: "Tech", v: "Required" }], content: "Home healthcare in India is a major growth segment. Applying these learnings to global systems allows for decentralized, low-cost care models in any market.", actions: ["Evaluate home healthcare models", "Incorporate home-tech learnings", "Scale home-based specialized care"] },
+      { id: "ch60", title: "Final Closing Statement", stats: [{ l: "Outcome", v: "Success" }, { l: "Legacy", v: "Impact" }], content: "The transformation is complete. By 2027, the organization is a digital-first, non-acute centered leader, delivering high-value care at an 8.7% EBITDA floor.", actions: ["Celebrate transformation milestones", "Set the 2035 vision", "Maintain continuous innovation culture"] }
+    ]
+  }
+];
+
+const navMenu = document.getElementById('nav-menu');
+const main = document.getElementById('main');
+
+function render() {
+  playbookData.forEach((vol) => {
+    const label = document.createElement('div');
+    label.className = 'nav-group';
+    label.innerText = vol.group;
+    navMenu.appendChild(label);
+
+    vol.chapters.forEach((ch) => {
+      const link = document.createElement('a');
+      link.href = `#${ch.id}`;
+      link.className = `nav-link ${ch.id === 'ch1' ? 'active' : ''}`;
+      link.id = `nav-${ch.id}`;
+      link.innerText = ch.title;
+      link.onclick = (e) => { e.preventDefault(); navigate(ch.id); };
+      navMenu.appendChild(link);
+
+      const section = document.createElement('section');
+      section.id = ch.id;
+      section.className = `chapter ${ch.id === 'ch1' ? 'active' : ''}`;
+      
+      const statsHtml = ch.stats.map(s => `
+        <div class="stat-card">
+          <h4>${s.l}</h4>
+          <div class="val">${s.v}</div>
+          <p class="sub">Strategic Benchmark</p>
+        </div>
+      `).join('');
+
+      const actionsHtml = ch.actions.map(a => `<li>${a}</li>`).join('');
+
+      section.innerHTML = `
+        <div class="ch-meta">
+          <span class="badge badge-gold">${vol.group.split(':')[0]}</span>
+          <span class="badge badge-teal">${Math.floor(Math.random()*4+5)} min read</span>
+        </div>
+        <h1>${ch.title}</h1>
+        <p style="font-size:1.1rem; color:var(--muted); margin-bottom:30px;">Strategic Analysis & Implementation Roadmap</p>
+        
+        <div class="visual-box" id="vis-${ch.id}">
+          <div class="loader"><div class="spinner"></div><p>Rendering Strategic Visualization...</p></div>
+        </div>
+
+        <div class="stat-grid">${statsHtml}</div>
+
+        <div class="callout">
+          <h3>The Strategic Perspective</h3>
+          <p>${ch.content}</p>
+        </div>
+
+        <h3>Operational Interventions & Action Items</h3>
+        <ul class="action-list">${actionsHtml}</ul>
+
+        <div class="footer-nav">
+          <button class="btn" onclick="navigatePrev('${ch.id}')">← Previous</button>
+          <button class="btn" onclick="navigateNext('${ch.id}')">Next Section →</button>
+        </div>
+      `;
+      main.appendChild(section);
+    });
+  });
+}
+
+function navigate(id) {
+  document.querySelectorAll('.chapter').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  
+  const target = document.getElementById(id);
+  if(target) target.classList.add('active');
+  const link = document.getElementById(`nav-${id}`);
+  if(link) link.classList.add('active');
+  
+  if (window.innerWidth <= 1024) document.getElementById('sidebar').classList.remove('open');
+  window.scrollTo(0,0);
+  
+  const visBox = document.getElementById(`vis-${id}`);
+  if (visBox && visBox.querySelector('.loader')) {
+    const ch = findChapter(id);
+    generateImage(ch.title, `vis-${id}`);
+  }
+}
+
+function findChapter(id) {
+  for(let v of playbookData) {
+    for(let c of v.chapters) { if(c.id === id) return c; }
+  }
+  return null;
+}
+
+function navigateNext(currentId) {
+  const allIds = playbookData.flatMap(v => v.chapters.map(c => c.id));
+  const idx = allIds.indexOf(currentId);
+  if(idx < allIds.length - 1) navigate(allIds[idx+1]);
+}
+
+function navigatePrev(currentId) {
+  const allIds = playbookData.flatMap(v => v.chapters.map(c => c.id));
+  const idx = allIds.indexOf(currentId);
+  if(idx > 0) navigate(allIds[idx-1]);
+}
+
+async function generateImage(title, containerId) {
+  const container = document.getElementById(containerId);
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ instances: [{ prompt: `Professional executive healthcare visual for ${title}, minimalist clinical technology, high-end hospital environment, deep navy and gold lighting, cinematic architecture, photorealistic 8k` }], parameters: { sampleCount: 1 } })
+    });
+    const result = await res.json();
+    if (result.predictions?.[0]?.bytesBase64Encoded) {
+      const url = `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
+      container.innerHTML = `<img src="${url}" class="ai-img" alt="${title}">`;
+    }
+  } catch (err) {
+    container.innerHTML = `<div class="loader" style="background:#cbd5e0; height:100%"><p>Strategic Context: ${title}</p></div>`;
+  }
+}
+
+function searchPlaybook() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  if(q.length < 3) return;
+  const allChapters = playbookData.flatMap(v => v.chapters);
+  const match = allChapters.find(c => c.title.toLowerCase().includes(q) || c.content.toLowerCase().includes(q));
+  if(match) navigate(match.id);
+}
+
+window.onload = () => {
+  render();
+  generateImage(playbookData[0].chapters[0].title, `vis-ch1`);
+};
+</script>
+
+</body>
+</html>
