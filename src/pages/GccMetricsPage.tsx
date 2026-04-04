@@ -1,12 +1,11 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, BarChart3, Filter, TrendingUp, Building2 } from "lucide-react";
+import { ArrowLeft, BarChart3, Filter, TrendingUp, Building2, Heart } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { PharmaFooter } from "@/components/PharmaFooter";
+import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { gccMetrics, gccDimensions, gccDimensionColors, gccHighlightStats } from "@/data/gcc-metrics";
 import type { GccMetric } from "@/data/gcc-metrics";
-import pharmaLogo from "@/assets/pharma-logo.png";
 
 function MetricRow({ m, i }: { m: GccMetric; i: number }) {
   const [open, setOpen] = useState(false);
@@ -50,7 +49,7 @@ function MetricRow({ m, i }: { m: GccMetric; i: number }) {
                 <div className="font-body text-xs text-foreground">{m.largeBenchmark}</div>
               </div>
               <div className="p-3 rounded-lg bg-accent/5 border border-accent/10">
-                <div className="font-mono text-[9px] text-accent-foreground uppercase tracking-wider mb-1">🏢 Novartis Hyderabad</div>
+                <div className="font-mono text-[9px] text-accent-foreground uppercase tracking-wider mb-1">🏢 Healthcare GCC Insight</div>
                 <div className="font-body text-xs text-foreground">{m.novartisInsight}</div>
               </div>
             </div>
@@ -79,9 +78,11 @@ const GccMetricsPage = () => {
               Back to Handbook
             </Link>
             <div className="flex items-center gap-3">
-              <img src={pharmaLogo} alt="Pharma Handbook" width={28} height={28} className="rounded-lg" />
+              <div className="w-7 h-7 rounded-lg gradient-bg flex items-center justify-center">
+                <Heart className="w-4 h-4 text-primary-foreground" />
+              </div>
               <span className="font-display text-sm font-bold text-foreground hidden sm:inline">
-                GCC Maturity Metrics & Benchmarks
+                Healthcare GCC Maturity Metrics
               </span>
               <span className="font-display text-sm font-bold text-foreground sm:hidden">
                 GCC Metrics
@@ -100,10 +101,10 @@ const GccMetricsPage = () => {
             <span className="font-mono text-xs text-primary tracking-wider uppercase">37 Metrics · 9 Dimensions</span>
           </div>
           <h1 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Pharma GCC Maturity <span className="gradient-text">Benchmarks</span>
+            Healthcare GCC Maturity <span className="gradient-text">Benchmarks</span>
           </h1>
           <p className="font-body text-muted-foreground max-w-xl mx-auto mb-8">
-            Comprehensive metrics framework for evaluating Global Capability Centre maturity — benchmarked against KPMG Wave 4 standards with Novartis Hyderabad insights.
+            Comprehensive metrics framework for evaluating Healthcare Global Capability Centre maturity — benchmarked against KPMG Wave 4 standards with industry-leading insights.
           </p>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-px max-w-3xl mx-auto rounded-2xl overflow-hidden glass-card">
             {gccHighlightStats.map((s) => (
@@ -150,12 +151,12 @@ const GccMetricsPage = () => {
         {/* Source attribution */}
         <div className="mt-12 p-4 rounded-xl border border-border bg-muted/30">
           <p className="font-mono text-xs text-muted-foreground">
-            📊 <strong>Sources:</strong> KPMG GCC Maturity Framework, Zinnov GCC Landscape Report, BCG Digital Transformation in Pharma, ANSR GCC Report, Deloitte Life Sciences Outlook, ZS Associates Commercial Excellence, Novartis Annual Reports, Qatalys Talent Analytics. Data reflects 2024–2025 benchmarks.
+            📊 <strong>Sources:</strong> KPMG GCC Maturity Framework, Zinnov GCC Landscape Report, BCG Digital Transformation in Healthcare, ANSR GCC Report, Deloitte Healthcare Outlook, ZS Associates Commercial Excellence, Industry Annual Reports, Qatalys Talent Analytics. Data reflects 2024–2025 benchmarks.
           </p>
         </div>
       </main>
 
-      <PharmaFooter />
+      <HealthcareFooter />
     </div>
   );
 };
