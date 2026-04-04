@@ -10,7 +10,7 @@ export function HealthcareFooter() {
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               The definitive operating playbook for healthcare executives, GCC leaders, and revenue cycle professionals.
             </p>
-            <p className="font-mono text-xs text-muted-foreground mt-3">30 Strategic Chapters · 61 RCM Deep Dives · 2025–2026</p>
+            <p className="font-mono text-xs text-muted-foreground mt-3">60 Strategic Chapters · 8 Volumes · 61 RCM Deep Dives · 2025–2026</p>
           </div>
           <div>
             <h4 className="font-mono text-xs text-primary tracking-wider uppercase mb-3">Frameworks</h4>
