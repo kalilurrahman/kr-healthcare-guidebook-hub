@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { BookOpen, ArrowRight, BarChart3 } from "lucide-react";
+import { BookOpen, ArrowRight, BarChart3, Layers } from "lucide-react";
 import { healthcareVolumes, transformationPillars } from "@/data/healthcare-data";
 import { ChapterCard } from "@/components/ChapterCard";
+import rcmImg from "@/assets/rcm-pipeline.jpg";
+import gccImg from "@/assets/gcc-india.jpg";
 
 interface OverviewSectionProps {
   onChapterSelect: (chapterId: string) => void;
@@ -58,14 +60,14 @@ export function OverviewSection({ onChapterSelect }: OverviewSectionProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Link to="/reader" className="card-pharma group flex items-center gap-4 no-underline hover:border-primary/50 transition-colors">
           <div className="p-3 rounded-lg bg-primary/10">
             <BookOpen className="w-6 h-6 text-primary" />
           </div>
           <div className="flex-1">
             <h3 className="font-display text-sm font-bold text-foreground mb-0.5">📖 Online Reader</h3>
-            <p className="font-body text-xs text-muted-foreground">Full 60-chapter handbook with sidebar navigation &amp; search</p>
+            <p className="font-body text-xs text-muted-foreground">Full 23-chapter DX handbook with sidebar navigation</p>
           </div>
           <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
         </Link>
@@ -75,10 +77,37 @@ export function OverviewSection({ onChapterSelect }: OverviewSectionProps) {
           </div>
           <div className="flex-1">
             <h3 className="font-display text-sm font-bold text-foreground mb-0.5">📊 GCC Metrics</h3>
-            <p className="font-body text-xs text-muted-foreground">Healthcare GCC benchmarks across key dimensions</p>
+            <p className="font-body text-xs text-muted-foreground">37 benchmarks across 9 dimensions</p>
           </div>
           <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
         </Link>
+        <Link to="/bcm" className="card-pharma group flex items-center gap-4 no-underline hover:border-primary/50 transition-colors">
+          <div className="p-3 rounded-lg bg-indigo/10">
+            <Layers className="w-6 h-6 text-indigo" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-display text-sm font-bold text-foreground mb-0.5">🗺️ Business Capability Map</h3>
+            <p className="font-body text-xs text-muted-foreground">7 domains, 36 processes, 200+ players</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+        </Link>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="rounded-2xl overflow-hidden border border-border">
+          <img src={rcmImg} alt="Revenue Cycle Management Pipeline" loading="lazy" width={1280} height={512} className="w-full h-40 object-cover" />
+          <div className="p-4 bg-muted/30">
+            <h3 className="font-display text-sm font-bold text-foreground mb-1">Revenue Cycle Architecture</h3>
+            <p className="font-body text-xs text-muted-foreground">End-to-end RCM from patient access through claims adjudication and analytics</p>
+          </div>
+        </div>
+        <div className="rounded-2xl overflow-hidden border border-border">
+          <img src={gccImg} alt="India GCC Operations" loading="lazy" width={1280} height={512} className="w-full h-40 object-cover" />
+          <div className="p-4 bg-muted/30">
+            <h3 className="font-display text-sm font-bold text-foreground mb-1">India GCC & Global Scaling</h3>
+            <p className="font-body text-xs text-muted-foreground">Capability centers driving 40% cost reduction with Wave 4 innovation maturity</p>
+          </div>
+        </div>
       </div>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card p-6 rounded-2xl overflow-x-auto">

@@ -1,10 +1,20 @@
 import { motion } from "framer-motion";
 import { coverStats } from "@/data/healthcare-data";
+import heroImg from "@/assets/hero-healthcare-dx.jpg";
 
 export function CoverSection() {
   return (
-    <section className="gradient-hero relative overflow-hidden min-h-[85vh] flex flex-col items-center justify-center px-6 py-20">
-      <div className="absolute inset-0 opacity-[0.04]">
+    <section className="relative overflow-hidden min-h-[85vh] flex flex-col items-center justify-center px-6 py-20">
+      <img
+        src={heroImg}
+        alt="Healthcare Digital Transformation"
+        className="absolute inset-0 w-full h-full object-cover"
+        width={1920}
+        height={640}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/90" />
+
+      <div className="absolute inset-0 opacity-[0.03]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="hex" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
@@ -13,14 +23,6 @@ export function CoverSection() {
           </defs>
           <rect width="100%" height="100%" fill="url(#hex)" />
         </svg>
-      </div>
-
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-2 h-2 bg-primary rounded-full animate-pulse-dot" />
-        <div className="absolute top-40 right-20 w-3 h-3 bg-primary rounded-full animate-pulse-dot" style={{ animationDelay: "0.5s" }} />
-        <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-secondary rounded-full animate-pulse-dot" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-primary rounded-full animate-pulse-dot" style={{ animationDelay: "1.5s" }} />
-        <div className="absolute bottom-40 right-10 w-3 h-3 bg-secondary rounded-full animate-pulse-dot" style={{ animationDelay: "0.7s" }} />
       </div>
 
       <motion.div
