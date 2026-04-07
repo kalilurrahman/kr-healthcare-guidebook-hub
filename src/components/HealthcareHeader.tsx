@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Menu, X, Heart, BookOpen, BarChart3 } from "lucide-react";
+import { Search, Menu, X, Heart, BookOpen, BarChart3, Layers } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -50,6 +50,10 @@ export function HealthcareHeader({ searchQuery, onSearchChange, activeSection, o
             <Link to="/gcc-metrics" className="nav-pill text-xs flex items-center gap-1.5">
               <BarChart3 className="w-3.5 h-3.5" />
               Metrics
+            </Link>
+            <Link to="/bcm" className="nav-pill text-xs flex items-center gap-1.5">
+              <Layers className="w-3.5 h-3.5" />
+              BCM
             </Link>
           </nav>
 
@@ -114,6 +118,14 @@ export function HealthcareHeader({ searchQuery, onSearchChange, activeSection, o
             >
               <BarChart3 className="w-3.5 h-3.5" />
               GCC Metrics
+            </Link>
+            <Link
+              to="/bcm"
+              className="nav-pill w-full text-left text-xs flex items-center gap-1.5"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              Business Capability Map
             </Link>
           </div>
         )}
