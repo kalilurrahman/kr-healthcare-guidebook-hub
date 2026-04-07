@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Download, FileText, File, Star } from "lucide-react";
+import { Download, FileText, File, Star, Table2, FileSpreadsheet } from "lucide-react";
 
 interface ResourceItem {
   name: string;
@@ -13,20 +13,48 @@ interface ResourceItem {
 
 const resources: ResourceItem[] = [
   {
-    name: "Healthcare GCC Handbook — Online Reader (HTML)",
+    name: "Healthcare DX Handbook — Online Reader",
     filename: "/reader",
     type: "html",
-    size: "60 Chapters",
-    description: "The self-contained interactive HTML reader with all 60 strategic chapters, sidebar navigation, search, and reading progress — zero dependencies required.",
+    size: "23 Chapters · 9 Parts",
+    description: "Interactive React-based reader with sidebar navigation, part/chapter toggles, KPI tables, executive summaries, and reading progress — fully responsive across devices.",
     primary: true,
     isLink: true,
+  },
+  {
+    name: "Healthcare DX Handbook 2026 — Standalone HTML",
+    filename: "Healthcare_DX_Handbook_2026.html",
+    type: "html",
+    size: "~1.8 MB",
+    description: "Self-contained single-file HTML reader with 23 chapters, sidebar navigation, and embedded styling — zero dependencies, works offline.",
+  },
+  {
+    name: "Healthcare DX Handbook 2026 — PDF Edition",
+    filename: "Healthcare_DX_Handbook_2026.pdf",
+    type: "pdf",
+    size: "76 Pages",
+    description: "Print-ready PDF with all 23 chapters, 12 embedded diagrams, KPI tables, and executive summaries for offline reading and distribution.",
+  },
+  {
+    name: "Healthcare DX Handbook 2026 — DOCX Edition",
+    filename: "Healthcare_DX_Handbook_2026.docx",
+    type: "docx",
+    size: "~3 MB",
+    description: "Editable Word document with full handbook content — ideal for annotation, internal distribution, and customisation.",
+  },
+  {
+    name: "Healthcare Business Capability Map v3 — Full Edition",
+    filename: "Healthcare_BCM_v3_Full_Edition.xlsx",
+    type: "xlsx",
+    size: "7 Domains · 36 Processes",
+    description: "Comprehensive healthcare business capability matrix with capability areas, processes, technology players, maturity ratings, and competitive landscape across enterprise, mid-size, niche, payer, and digital-first segments.",
   },
   {
     name: "Healthcare GCC Handbook — Comprehensive DOCX",
     filename: "KR_HC_GG.docx",
     type: "docx",
     size: "~3 MB",
-    description: "Full editable Word document with all 30 strategic chapters, tables, diagrams, and executive summaries for annotation and internal distribution.",
+    description: "Full editable Word document with all 60 strategic chapters across 8 volumes — tables, diagrams, and executive summaries for annotation and internal distribution.",
   },
 ];
 
@@ -34,6 +62,7 @@ const iconMap: Record<string, React.ReactNode> = {
   html: <FileText className="w-6 h-6" />,
   docx: <File className="w-6 h-6" />,
   pdf: <FileText className="w-6 h-6" />,
+  xlsx: <FileSpreadsheet className="w-6 h-6" />,
   zip: <File className="w-6 h-6" />,
 };
 
@@ -41,6 +70,7 @@ const colorMap: Record<string, string> = {
   html: "text-primary",
   docx: "text-indigo",
   pdf: "text-coral",
+  xlsx: "text-green-600 dark:text-green-400",
   zip: "text-gold",
 };
 
@@ -50,7 +80,7 @@ export function ResourcesSection() {
       <div className="mb-8">
         <h2 className="font-display text-2xl font-bold text-foreground mb-2">📥 Downloadable Resources</h2>
         <p className="font-body text-muted-foreground">
-          Download the full handbook in multiple formats. The Online Reader HTML is the canonical, always-current edition.
+          Download the full handbook in multiple formats. The Online Reader is the canonical, always-current edition. All resources are curated and maintained by Kalilur Rahman.
         </p>
       </div>
 
@@ -62,7 +92,7 @@ export function ResourcesSection() {
             {...(res.isLink ? {} : { download: true })}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
+            transition={{ delay: i * 0.08 }}
             className={`card-pharma group flex flex-col gap-4 no-underline ${res.primary ? "border-primary/50 ring-1 ring-primary/20 sm:col-span-2" : ""}`}
           >
             <div className="flex items-start gap-4">
@@ -70,7 +100,7 @@ export function ResourcesSection() {
                 {iconMap[res.type] ?? <File className="w-6 h-6" />}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
                   <span className="font-mono text-[10px] uppercase tracking-wider text-primary">
                     {res.type.toUpperCase()} · {res.size}
                   </span>
@@ -102,7 +132,7 @@ export function ResourcesSection() {
           <a href="https://kalilurrahman.lovable.app" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
             Kalilur Rahman
           </a>
-          {" "}· Healthcare GCC &amp; Digital Transformation Handbook — Comprehensive Edition 2025
+          {" "}· Healthcare GCC &amp; Digital Transformation Handbook — Comprehensive Edition 2025–2026
         </p>
       </div>
     </div>
