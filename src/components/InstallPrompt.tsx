@@ -12,7 +12,7 @@ export function InstallPrompt() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    const wasDismissed = localStorage.getItem("pharma-install-dismissed");
+    const wasDismissed = localStorage.getItem("healthcare-install-dismissed");
     if (wasDismissed) {
       setDismissed(true);
       return;
@@ -41,7 +41,7 @@ export function InstallPrompt() {
   const handleDismiss = () => {
     setShowPrompt(false);
     setDismissed(true);
-    localStorage.setItem("pharma-install-dismissed", "true");
+    localStorage.setItem("healthcare-install-dismissed", "true");
   };
 
   if (!showPrompt || dismissed) return null;
@@ -56,8 +56,8 @@ export function InstallPrompt() {
           <Download className="w-5 h-5 text-primary-foreground" />
         </div>
         <div>
-          <h4 className="font-display text-sm font-bold text-foreground">Install App</h4>
-          <p className="text-xs text-muted-foreground">Access offline</p>
+          <h4 className="font-display text-sm font-bold text-foreground">Install Healthcare DX</h4>
+          <p className="text-xs text-muted-foreground">Access offline anytime</p>
         </div>
       </div>
       <button

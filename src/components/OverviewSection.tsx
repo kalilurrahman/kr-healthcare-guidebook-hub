@@ -1,27 +1,34 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { BookOpen, ArrowRight, BarChart3, Layers } from "lucide-react";
-import { healthcareVolumes, transformationPillars } from "@/data/healthcare-data";
-import { ChapterCard } from "@/components/ChapterCard";
-import rcmImg from "@/assets/rcm-pipeline.jpg";
-import gccImg from "@/assets/gcc-india.jpg";
+import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu } from "lucide-react";
+import { transformationPillars } from "@/data/healthcare-data";
 
 interface OverviewSectionProps {
   onChapterSelect: (chapterId: string) => void;
+  onNavigateResources?: () => void;
 }
 
 const industryStats = [
   { value: "$4.9T", label: "US NHE 2025", color: "text-primary" },
-  { value: "8.9%", label: "EBITDA/NHE 2024", color: "text-coral" },
-  { value: "8.7%", label: "2027 Projection", color: "text-gold" },
-  { value: "60", label: "Strategic Chapters", color: "text-teal" },
-  { value: "61", label: "RCM Playbooks", color: "text-indigo" },
-  { value: "8", label: "Volumes", color: "text-violet" },
+  { value: "$12.8T", label: "Global Market", color: "text-gold" },
+  { value: "5", label: "Healthcare Domains", color: "text-violet" },
+  { value: "60%", label: "AI Adoption", color: "text-coral" },
+  { value: "42%", label: "VBC Spending", color: "text-teal" },
+  { value: "450K", label: "Workforce Gaps", color: "text-indigo" },
 ];
 
-export function OverviewSection({ onChapterSelect }: OverviewSectionProps) {
+const domainHighlights = [
+  { icon: "🏥", title: "Healthcare Providers", stat: "$1.5T US Acute Care", desc: "Hospital systems, ASCs, physician practices — consolidating into IDNs across the care continuum." },
+  { icon: "🛡️", title: "Health Insurance Payers", stat: "Top 5 = 50% Market", desc: "Commercial insurers, Medicare Advantage, Medicaid — managing $4T+ in annual claims." },
+  { icon: "💊", title: "PBM & Pharmacy", stat: "Top 3 = 80% Market", desc: "Pharmacy benefit managers, specialty pharmacy, formulary management driving drug cost outcomes." },
+  { icon: "🤝", title: "Care Delivery Orgs", stat: "461 ACOs Active", desc: "ACOs, PCMHs, and risk-bearing entities driving value-based care adoption across 33M+ lives." },
+  { icon: "🧠", title: "Specialized Services", stat: "28% Telehealth CAGR", desc: "Behavioral health, home health, telehealth, hospice — the fastest-growing segments." },
+];
+
+export function OverviewSection({ onChapterSelect, onNavigateResources }: OverviewSectionProps) {
   return (
     <div className="space-y-12">
+      {/* Quick Stats Bar */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -41,6 +48,78 @@ export function OverviewSection({ onChapterSelect }: OverviewSectionProps) {
         ))}
       </motion.div>
 
+      {/* Quick Navigation Cards — prominent */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <Link to="/reader" className="card-pharma group flex flex-col items-center gap-3 text-center no-underline hover:border-primary/50 transition-colors p-5">
+          <div className="p-3 rounded-xl bg-primary/10">
+            <BookOpen className="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h3 className="font-display text-sm font-bold text-foreground mb-0.5">Online Reader</h3>
+            <p className="font-body text-[10px] text-muted-foreground">23 Chapters · 9 Parts</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+        </Link>
+        <Link to="/gcc-metrics" className="card-pharma group flex flex-col items-center gap-3 text-center no-underline hover:border-primary/50 transition-colors p-5">
+          <div className="p-3 rounded-xl bg-gold/10">
+            <BarChart3 className="w-6 h-6 text-gold" />
+          </div>
+          <div>
+            <h3 className="font-display text-sm font-bold text-foreground mb-0.5">GCC Metrics</h3>
+            <p className="font-body text-[10px] text-muted-foreground">37 Benchmarks · 9 Dimensions</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+        </Link>
+        <Link to="/bcm" className="card-pharma group flex flex-col items-center gap-3 text-center no-underline hover:border-primary/50 transition-colors p-5">
+          <div className="p-3 rounded-xl bg-indigo/10">
+            <Layers className="w-6 h-6 text-indigo" />
+          </div>
+          <div>
+            <h3 className="font-display text-sm font-bold text-foreground mb-0.5">Capability Map</h3>
+            <p className="font-body text-[10px] text-muted-foreground">7 Domains · 36 Processes</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+        </Link>
+        <button
+          onClick={onNavigateResources}
+          className="card-pharma group flex flex-col items-center gap-3 text-center hover:border-primary/50 transition-colors p-5"
+        >
+          <div className="p-3 rounded-xl bg-coral/10">
+            <Download className="w-6 h-6 text-coral" />
+          </div>
+          <div>
+            <h3 className="font-display text-sm font-bold text-foreground mb-0.5">Resources</h3>
+            <p className="font-body text-[10px] text-muted-foreground">PDF · DOCX · XLSX · HTML</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+        </button>
+      </div>
+
+      {/* Five-Domain Healthcare Ecosystem */}
+      <div>
+        <h2 className="font-display text-xl font-bold text-foreground mb-2">The Five-Domain Healthcare Ecosystem</h2>
+        <p className="font-body text-sm text-muted-foreground mb-6">Comprehensive coverage of every major healthcare sector — from providers and payers to PBMs, care delivery organizations, and specialized services.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {domainHighlights.map((d, i) => (
+            <motion.div
+              key={d.title}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.06 }}
+              className="card-pharma"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-2xl">{d.icon}</span>
+                <span className="font-mono text-[10px] text-primary tracking-wider">{d.stat}</span>
+              </div>
+              <h3 className="font-display text-sm font-bold text-foreground mb-1">{d.title}</h3>
+              <p className="font-body text-xs text-muted-foreground leading-relaxed">{d.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Digital Transformation Pillars */}
       <div>
         <h2 className="font-display text-xl font-bold text-foreground mb-6">Digital Transformation Pillars</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -60,56 +139,27 @@ export function OverviewSection({ onChapterSelect }: OverviewSectionProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Link to="/reader" className="card-pharma group flex items-center gap-4 no-underline hover:border-primary/50 transition-colors">
-          <div className="p-3 rounded-lg bg-primary/10">
-            <BookOpen className="w-6 h-6 text-primary" />
-          </div>
-          <div className="flex-1">
-            <h3 className="font-display text-sm font-bold text-foreground mb-0.5">📖 Online Reader</h3>
-            <p className="font-body text-xs text-muted-foreground">Full 23-chapter DX handbook with sidebar navigation</p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-        </Link>
-        <Link to="/gcc-metrics" className="card-pharma group flex items-center gap-4 no-underline hover:border-primary/50 transition-colors">
-          <div className="p-3 rounded-lg bg-gold/10">
-            <BarChart3 className="w-6 h-6 text-gold" />
-          </div>
-          <div className="flex-1">
-            <h3 className="font-display text-sm font-bold text-foreground mb-0.5">📊 GCC Metrics</h3>
-            <p className="font-body text-xs text-muted-foreground">37 benchmarks across 9 dimensions</p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-        </Link>
-        <Link to="/bcm" className="card-pharma group flex items-center gap-4 no-underline hover:border-primary/50 transition-colors">
-          <div className="p-3 rounded-lg bg-indigo/10">
-            <Layers className="w-6 h-6 text-indigo" />
-          </div>
-          <div className="flex-1">
-            <h3 className="font-display text-sm font-bold text-foreground mb-0.5">🗺️ Business Capability Map</h3>
-            <p className="font-body text-xs text-muted-foreground">7 domains, 36 processes, 200+ players</p>
-          </div>
-          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="rounded-2xl overflow-hidden border border-border">
-          <img src={rcmImg} alt="Revenue Cycle Management Pipeline" loading="lazy" width={1280} height={512} className="w-full h-40 object-cover" />
-          <div className="p-4 bg-muted/30">
-            <h3 className="font-display text-sm font-bold text-foreground mb-1">Revenue Cycle Architecture</h3>
-            <p className="font-body text-xs text-muted-foreground">End-to-end RCM from patient access through claims adjudication and analytics</p>
-          </div>
+      {/* Key Market Dynamics — from merged content */}
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card p-6 rounded-2xl">
+        <h2 className="font-display text-lg font-bold text-foreground mb-4">Key Market Dynamics · 2025–2026</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { icon: TrendingUp, label: "Consolidation", stat: "90%", desc: "of hospital markets highly concentrated (HHI >2,500)" },
+            { icon: Users, label: "Value-Based Care", stat: "42%", desc: "of healthcare spending now in value-based models" },
+            { icon: Cpu, label: "Digital Health", stat: "$38B+", desc: "invested globally in digital health (2024)" },
+            { icon: Shield, label: "Compliance Cost", stat: "5–8%", desc: "of operating budgets spent on regulatory compliance" },
+          ].map((item) => (
+            <div key={item.label} className="p-4 rounded-xl bg-muted/30 border border-border">
+              <item.icon className="w-5 h-5 text-primary mb-2" />
+              <div className="font-display text-xl font-bold text-foreground">{item.stat}</div>
+              <div className="font-mono text-[10px] text-primary uppercase tracking-wider mb-1">{item.label}</div>
+              <p className="font-body text-xs text-muted-foreground">{item.desc}</p>
+            </div>
+          ))}
         </div>
-        <div className="rounded-2xl overflow-hidden border border-border">
-          <img src={gccImg} alt="India GCC Operations" loading="lazy" width={1280} height={512} className="w-full h-40 object-cover" />
-          <div className="p-4 bg-muted/30">
-            <h3 className="font-display text-sm font-bold text-foreground mb-1">India GCC & Global Scaling</h3>
-            <p className="font-body text-xs text-muted-foreground">Capability centers driving 40% cost reduction with Wave 4 innovation maturity</p>
-          </div>
-        </div>
-      </div>
+      </motion.div>
 
+      {/* Healthcare Value Chain (simplified) */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card p-6 rounded-2xl overflow-x-auto">
         <h2 className="font-display text-lg font-bold text-foreground mb-4 text-center">Healthcare Digital Value Chain</h2>
         <svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-2xl mx-auto" style={{ minWidth: 400 }}>
@@ -141,25 +191,6 @@ export function OverviewSection({ onChapterSelect }: OverviewSectionProps) {
           </text>
         </svg>
       </motion.div>
-
-      {healthcareVolumes.map((vol) => (
-        <div key={vol.group}>
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-2xl">📘</span>
-            <h2 className="font-display text-xl font-bold text-foreground">{vol.group}</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {vol.chapters.map((chapter, i) => (
-              <ChapterCard
-                key={chapter.id}
-                chapter={chapter}
-                index={i}
-                onClick={() => onChapterSelect(chapter.id)}
-              />
-            ))}
-          </div>
-        </div>
-      ))}
     </div>
   );
 }
