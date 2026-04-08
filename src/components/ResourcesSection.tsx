@@ -56,6 +56,13 @@ const resources: ResourceItem[] = [
     size: "~3 MB",
     description: "Full editable Word document with all 60 strategic chapters across 8 volumes — tables, diagrams, and executive summaries for annotation and internal distribution.",
   },
+  {
+    name: "Healthcare Transformation Playbook — Full Markdown",
+    filename: "Healthcare_Transformation_Playbook.md",
+    type: "md",
+    size: "5 Domains · 20K+ Lines",
+    description: "Comprehensive transformation playbook covering 5 healthcare domains, 50+ chapters, 350+ concepts, 8 implementation roadmaps, and cross-domain frameworks — ready for import and integration.",
+  },
 ];
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -64,6 +71,7 @@ const iconMap: Record<string, React.ReactNode> = {
   pdf: <FileText className="w-6 h-6" />,
   xlsx: <FileSpreadsheet className="w-6 h-6" />,
   zip: <File className="w-6 h-6" />,
+  md: <FileText className="w-6 h-6" />,
 };
 
 const colorMap: Record<string, string> = {
@@ -72,6 +80,7 @@ const colorMap: Record<string, string> = {
   pdf: "text-coral",
   xlsx: "text-green-600 dark:text-green-400",
   zip: "text-gold",
+  md: "text-violet",
 };
 
 export function ResourcesSection() {
