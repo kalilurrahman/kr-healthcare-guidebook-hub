@@ -13,24 +13,18 @@ const volumeNavItems = [
   { id: "overview", label: "Overview" },
   { id: "vol-1", label: "Vol 1 · Market" },
   { id: "vol-2", label: "Vol 2 · RCM" },
-  { id: "vol-3", label: "Vol 3 · AI & Droidal" },
-  { id: "vol-4", label: "Vol 4 · Pulmonary" },
-  { id: "vol-5", label: "Vol 5 · Operations" },
-  { id: "vol-6", label: "Vol 6 · India GCC" },
+  { id: "vol-3", label: "Vol 3 · AI" },
+  { id: "vol-4", label: "Vol 4 · Clinical" },
+  { id: "vol-5", label: "Vol 5 · Ops" },
+  { id: "vol-6", label: "Vol 6 · GCC" },
   { id: "vol-7", label: "Vol 7 · Growth" },
   { id: "vol-8", label: "Vol 8 · 2030" },
   { id: "resources", label: "📥 Resources" },
 ];
 
 const volumeIndexMap: Record<string, number> = {
-  "vol-1": 0,
-  "vol-2": 1,
-  "vol-3": 2,
-  "vol-4": 3,
-  "vol-5": 4,
-  "vol-6": 5,
-  "vol-7": 6,
-  "vol-8": 7,
+  "vol-1": 0, "vol-2": 1, "vol-3": 2, "vol-4": 3,
+  "vol-5": 4, "vol-6": 5, "vol-7": 6, "vol-8": 7,
 };
 
 const Index = () => {
@@ -106,7 +100,10 @@ const Index = () => {
             </motion.div>
           ) : showOverview ? (
             <motion.div key="overview" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <OverviewSection onChapterSelect={handleChapterSelect} />
+              <OverviewSection
+                onChapterSelect={handleChapterSelect}
+                onNavigateResources={() => handleSectionChange("resources")}
+              />
             </motion.div>
           ) : showFilteredGrid ? (
             <motion.div key={`filtered-${activeSection}-${searchQuery}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
@@ -118,7 +115,7 @@ const Index = () => {
                     </p>
                   )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {filteredChapters.map((ch, i) => (
+                    {filteredChapters.map((ch) => (
                       <div key={ch.id}>
                         <div
                           onClick={() => handleChapterSelect(ch.id)}
