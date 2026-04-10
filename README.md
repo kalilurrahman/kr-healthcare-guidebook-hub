@@ -1,16 +1,16 @@
-# Pharma GCC Transformation Handbook
+# Healthcare GCC Digital Transformation Handbook
 
-A definitive guide to pharmaceutical Global Capability Center (GCC) transformation in the AI era.
+A definitive guide to healthcare Global Capability Center (GCC) transformation in the AI era.
 
-This application is a comprehensive, modern web platform designed to serve as a centralized hub for understanding the value chain, commercial aspects, enablers, and foundations of pharmaceutical GCCs.
+This application is a comprehensive, modern web platform designed to serve as a centralized hub for understanding the value chain, commercial aspects, enablers, and foundations of healthcare GCCs.
 
 ## Live Application
-🌍 **[Explore the Application](https://kr-pharma-guidebook-hub.lovable.app)**
+🌍 **[Explore the Application](https://kr-healthcare-guidebook-hub.lovable.app)**
 
 
 
-[![Live App](https://img.shields.io/badge/Live_App-kr--pharma--guidebook--hub.lovable.app-20808D?style=flat-square)](https://kr-pharma-guidebook-hub.lovable.app/)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-kalilurrahman%2Fkr--pharma--guidebook--hub-333?style=flat-square&logo=github)](https://github.com/kalilurrahman/kr-pharma-guidebook-hub)
+[![Live App](https://img.shields.io/badge/Live_App-kr--healthcare--guidebook--hub.lovable.app-20808D?style=flat-square)](https://kr-healthcare-guidebook-hub.lovable.app/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-kalilurrahman%2Fkr--healthcare--guidebook--hub-333?style=flat-square&logo=github)](https://github.com/kalilurrahman/kr-healthcare-guidebook-hub)
 [![React](https://img.shields.io/badge/React-Enabled-61DAFB?style=flat-square&logo=react)](#)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Primary-3178C6?style=flat-square&logo=typescript)](#)
 [![Tailwind](https://img.shields.io/badge/Tailwind_CSS-Enabled-38B2AC?style=flat-square&logo=tailwind-css)](#)
@@ -32,7 +32,7 @@ This application is a comprehensive, modern web platform designed to serve as a 
 
 ## Overview
 
-The Pharma GCC Transformation Handbook provides deep insights into the pharmaceutical industry's transformation. It features an interactive, modern interface with different sections outlining the various aspects of the pharma ecosystem.
+The Healthcare GCC Digital Transformation Handbook provides deep insights into the healthcare industry's transformation. It features an interactive, modern interface with different sections outlining the various aspects of the healthcare ecosystem.
 
 ### Key Features
 
@@ -40,7 +40,7 @@ The Pharma GCC Transformation Handbook provides deep insights into the pharmaceu
 - **Dynamic Themes:** Built-in Light and Dark mode switching for optimal reading experience.
 - **Comprehensive Sections:**
   - **Foundations:** Basic principles and foundational knowledge.
-  - **Value Chain:** Insights into the pharmaceutical value chain.
+  - **Value Chain:** Insights into the healthcare value chain.
   - **Commercial:** Commercial strategies and models.
   - **Enterprise Enablers:** Key enablers driving enterprise transformation.
 - **Search Functionality:** Easily find chapters and resources.
@@ -96,7 +96,7 @@ Views showcasing the Online Reader, GCC Metrics, and detailed Chapter/Modal view
 
 1. Clone the repository:
    \`\`\`bash
-   git clone https://github.com/kalilurrahman/kr-pharma-guidebook-hub.git
+   git clone https://github.com/kalilurrahman/kr-healthcare-guidebook-hub.git
    \`\`\`
 
 2. Install dependencies:
