@@ -47,10 +47,7 @@ export function HealthcareFooter() {
             </p>
           </div>
           <p className="text-center font-mono text-xs text-muted-foreground">
-            © 2025–2026 Kalilur Rahman. All rights reserved. ACUITAS™ and CLARITY™ are proprietary frameworks of Kalilur Rahman.
-          </p>
-          <p className="text-center font-body text-xs text-muted-foreground mt-2">
-            Built with ❤️ for healthcare leaders navigating transformation.
+            Curated by <a href="https://kalilurrahman.lovable.app" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-teal-light transition-colors">Kalilur Rahman</a>
           </p>
         </div>
       </div>
