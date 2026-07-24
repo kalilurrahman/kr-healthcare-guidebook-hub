@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu } from "lucide-react";
 import { transformationPillars } from "@/data/healthcare-data";
 import { CuratedSignals } from "@/components/CuratedSignals";
+import { LeaderQuotes } from "@/components/LeaderQuotes";
+import { MetricsDeepDive } from "@/components/MetricsDeepDive";
 
 interface OverviewSectionProps {
   onChapterSelect: (chapterId: string) => void;
