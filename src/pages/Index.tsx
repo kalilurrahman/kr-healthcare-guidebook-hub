@@ -7,6 +7,7 @@ import { ChapterViewer } from "@/components/ChapterViewer";
 import { ResourcesSection } from "@/components/ResourcesSection";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { InstallPrompt } from "@/components/InstallPrompt";
+import { IndustryTicker } from "@/components/IndustryTicker";
 import { allChapters, healthcareVolumes } from "@/data/healthcare-data";
 
 const volumeNavItems = [
@@ -79,6 +80,8 @@ const Index = () => {
         onSectionChange={handleSectionChange}
         navItems={volumeNavItems}
       />
+
+      <IndustryTicker />
 
       {showOverview && !selectedChapter && <CoverSection />}
 

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu } from "lucide-react";
 import { transformationPillars } from "@/data/healthcare-data";
+import { CuratedSignals } from "@/components/CuratedSignals";
 
 interface OverviewSectionProps {
   onChapterSelect: (chapterId: string) => void;
@@ -118,6 +119,9 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
           ))}
         </div>
       </div>
+
+      {/* Curated Industry Signals — sourced from CMS, KFF, Deloitte, Kaufman Hall, Rock Health, NASSCOM */}
+      <CuratedSignals />
 
       {/* Digital Transformation Pillars */}
       <div>
