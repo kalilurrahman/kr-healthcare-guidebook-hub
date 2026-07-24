@@ -145,6 +145,14 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
         </div>
       </div>
 
+      {/* Benchmarks deep-dive — 20 curated KPIs */}
+      <MetricsDeepDive />
+
+      {/* Curated leadership quotes */}
+      <LeaderQuotes />
+
+
+
       {/* Key Market Dynamics — from merged content */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card p-6 rounded-2xl">
         <h2 className="font-display text-lg font-bold text-foreground mb-4">Key Market Dynamics · 2025–2026</h2>
