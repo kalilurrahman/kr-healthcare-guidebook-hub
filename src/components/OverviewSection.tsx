@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu } from "lucide-react";
 import { transformationPillars } from "@/data/healthcare-data";
 import { CuratedSignals } from "@/components/CuratedSignals";
+import { LeaderQuotes } from "@/components/LeaderQuotes";
+import { MetricsDeepDive } from "@/components/MetricsDeepDive";
 
 interface OverviewSectionProps {
   onChapterSelect: (chapterId: string) => void;
@@ -142,6 +144,14 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
           ))}
         </div>
       </div>
+
+      {/* Benchmarks deep-dive — 20 curated KPIs */}
+      <MetricsDeepDive />
+
+      {/* Curated leadership quotes */}
+      <LeaderQuotes />
+
+
 
       {/* Key Market Dynamics — from merged content */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card p-6 rounded-2xl">
