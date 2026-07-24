@@ -73,17 +73,24 @@ export function HealthcareHeader({ searchQuery, onSearchChange, activeSection, o
             </button>
           </nav>
 
-          {/* Volume nav - hidden on smaller screens, visible on lg */}
-          <nav className="hidden lg:flex items-center gap-0.5 max-w-md overflow-x-auto scrollbar-hide">
-            {navItems.filter(n => n.id !== "resources").slice(0, 5).map((item) => (
-              <button
-                key={item.id}
-                onClick={() => onSectionChange(item.id)}
-                className={`nav-pill text-[10px] px-3 py-1.5 ${activeSection === item.id ? "active" : ""}`}
-              >
-                {item.label}
-              </button>
-            ))}
+          {/* Volume nav — ticker-style scroll on lg+, discoverable via mobile menu on small screens */}
+          <nav
+            className="hidden lg:flex items-center max-w-sm xl:max-w-md overflow-hidden relative group"
+            aria-label="Volumes"
+          >
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-background to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent z-10" />
+            <div className="flex items-center gap-1 animate-marquee whitespace-nowrap w-max group-hover:[animation-play-state:paused]">
+              {[...navItems.filter(n => n.id !== "resources"), ...navItems.filter(n => n.id !== "resources")].map((item, idx) => (
+                <button
+                  key={`${item.id}-${idx}`}
+                  onClick={() => onSectionChange(item.id)}
+                  className={`nav-pill text-[10px] px-3 py-1.5 shrink-0 ${activeSection === item.id ? "active" : ""}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </nav>
 
           <div className="flex items-center gap-3">
