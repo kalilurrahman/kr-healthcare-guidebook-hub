@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Search, Menu, X, BookOpen, BarChart3, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import pharmaLogo from "@/assets/pharma-logo.png";
+import pharmaLogo from "./pharma-logo.png";
 
 interface PharmaHeaderProps {
   searchQuery: string;
