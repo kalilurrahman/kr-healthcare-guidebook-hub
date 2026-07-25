@@ -22,7 +22,7 @@ interface LeadCaptureProps {
  */
 export function LeadCapture({ tool, summary }: LeadCaptureProps) {
   const [email, setEmail] = useState("");
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<"idle" | "ok" | "fail">("idle");
 
   const mailtoHref = useMemo(() => {
     const subject = encodeURIComponent(`${tool} — send me the full benchmark pack`);
@@ -37,11 +37,13 @@ export function LeadCapture({ tool, summary }: LeadCaptureProps) {
 
   const copySummary = useCallback(async () => {
     try {
+      // navigator.clipboard is undefined on non-secure origins (plain-HTTP LAN
+      // deploys), which previously made this button silently do nothing.
       await navigator.clipboard.writeText(`${tool}\n\n${summary}`);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
+      setCopyState("ok");
+      window.setTimeout(() => setCopyState("idle"), 1800);
     } catch {
-      setCopied(false);
+      setCopyState("fail");
     }
   }, [tool, summary]);
 
@@ -75,7 +77,7 @@ export function LeadCapture({ tool, summary }: LeadCaptureProps) {
 
       <div className="flex items-center gap-2 flex-wrap">
         <button onClick={copySummary} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border text-muted-foreground font-mono text-[11px] hover:text-primary hover:border-primary/40 transition-colors">
-          {copied ? <><Check className="w-3.5 h-3.5" /> Copied</> : <><Copy className="w-3.5 h-3.5" /> Copy summary</>}
+          {copyState === "ok" ? <><Check className="w-3.5 h-3.5" /> Copied</> : <><Copy className="w-3.5 h-3.5" /> Copy summary</>}
         </button>
         <button onClick={print} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border text-muted-foreground font-mono text-[11px] hover:text-primary hover:border-primary/40 transition-colors">
           <Printer className="w-3.5 h-3.5" /> Print / Save PDF
@@ -87,6 +89,15 @@ export function LeadCapture({ tool, summary }: LeadCaptureProps) {
         >
           Book a session <ExternalLink className="w-3 h-3" />
         </a>
+      </div>
+
+      <div role="status" aria-live="polite" className={copyState === "fail" ? "mt-2" : "sr-only"}>
+        {copyState === "ok" && "Summary copied to clipboard."}
+        {copyState === "fail" && (
+          <span className="font-mono text-[11px] text-coral">
+            Copy failed — your browser blocks clipboard access on insecure pages. Use Print / Save PDF, or select the results and press Ctrl/⌘-C.
+          </span>
+        )}
       </div>
     </div>
   );

@@ -40,16 +40,20 @@
     --navy: 218 62% 11%;
     --navy-mid: 216 53% 16%;
     --navy-light: 215 44% 22%;
-    --indigo: 244 58% 42%;
-    --indigo-light: 243 55% 50%;
+    /* Accent text colors are tuned per theme so status/result text clears
+       WCAG AA 4.5:1 on this theme's card background (dark: hsl(222 47% 9%)).
+       Previously both themes shared one value, so indigo rendered at 1.86:1
+       here — unreadable for the most common L3 diagnostic result. */
+    --indigo: 244 58% 68%;
+    --indigo-light: 243 55% 74%;
     --violet: 263 70% 58%;
     --violet-light: 262 83% 68%;
-    --teal: 172 83% 32%;
-    --teal-light: 171 77% 40%;
+    --teal: 172 83% 36%;
+    --teal-light: 171 77% 44%;
     --teal-pale: 166 76% 90%;
-    --gold: 38 90% 43%;
-    --gold-light: 43 96% 56%;
-    --coral: 346 84% 50%;
+    --gold: 38 90% 50%;
+    --gold-light: 43 96% 60%;
+    --coral: 346 84% 60%;
 
     --gradient-hero: linear-gradient(135deg, hsl(222 47% 6%), hsl(244 50% 15%), hsl(244 58% 25%));
     --gradient-primary: linear-gradient(135deg, hsl(172 83% 32%), hsl(263 70% 50%));
@@ -95,16 +99,18 @@
     --navy: 218 62% 11%;
     --navy-mid: 216 53% 16%;
     --navy-light: 215 44% 22%;
+    /* Light-theme accents: darkened so status/result text clears WCAG AA
+       4.5:1 on a white card. (gold was 2.91:1 and teal 3.71:1 before.) */
     --indigo: 244 58% 42%;
     --indigo-light: 243 55% 50%;
-    --violet: 263 70% 58%;
-    --violet-light: 262 83% 68%;
-    --teal: 172 83% 32%;
-    --teal-light: 171 77% 40%;
+    --violet: 263 70% 50%;
+    --violet-light: 262 83% 58%;
+    --teal: 172 83% 27%;
+    --teal-light: 171 77% 33%;
     --teal-pale: 166 76% 90%;
-    --gold: 38 90% 43%;
-    --gold-light: 43 96% 56%;
-    --coral: 346 84% 50%;
+    --gold: 38 90% 32%;
+    --gold-light: 43 96% 40%;
+    --coral: 346 84% 45%;
 
     --gradient-hero: linear-gradient(135deg, hsl(218 62% 11%), hsl(244 50% 20%), hsl(244 58% 30%));
     --gradient-primary: linear-gradient(135deg, hsl(172 83% 32%), hsl(263 70% 50%));

@@ -48,6 +48,20 @@ export const sectionHeadings: Record<NoteSection, string[]> = {
   signature: ["electronically signed", "signed by", "attestation", "dictated by"],
 };
 
+const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/**
+ * Heading matchers, compiled ONCE at module load. Building these inside the
+ * per-line loop cost ~33 RegExp constructions per line, which made scoring a
+ * large pasted note block the main thread for hundreds of milliseconds.
+ */
+const HEADING_RE: [NoteSection, RegExp][] =
+  (Object.entries(sectionHeadings) as [NoteSection, string[]][])
+    .map(([section, heads]) => [
+      section,
+      new RegExp(`^(?:${heads.map(escapeRe).join("|")})\\s*[:\\-–—]`, "i"),
+    ]);
+
 /**
  * Split a note into sections by recognized headings. Returns the text that
  * follows each heading, up to the next heading. Falls back to empty string
@@ -60,8 +74,6 @@ export function sliceSections(note: string): Record<NoteSection, string> {
     medications: "", assessment: "", plan: "", signature: "",
   } as Record<NoteSection, string>;
 
-  // Build a heading matcher: a line starting with a known heading followed by ':' or end.
-  const entries = Object.entries(sectionHeadings) as [NoteSection, string[]][];
   let current: NoteSection | null = null;
 
   for (const rawLine of lines) {
@@ -69,13 +81,9 @@ export function sliceSections(note: string): Record<NoteSection, string> {
     const lower = line.toLowerCase();
     let matched: NoteSection | null = null;
 
-    for (const [section, heads] of entries) {
-      for (const h of heads) {
-        // "ASSESSMENT:", "Assessment -", "assessment and plan:" at line start
-        const re = new RegExp(`^${h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*[:\\-–—]`, "i");
-        if (re.test(lower)) { matched = section; break; }
-      }
-      if (matched) break;
+    // "ASSESSMENT:", "Assessment -", "assessment and plan:" at line start
+    for (const [section, re] of HEADING_RE) {
+      if (re.test(lower)) { matched = section; break; }
     }
 
     if (matched) {

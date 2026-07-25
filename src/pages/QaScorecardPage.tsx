@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -31,13 +31,18 @@ const toneText: Record<string, string> = { good: "text-teal", warn: "text-gold",
 
 const QaScorecardPage = () => {
   const [note, setNote] = useState("");
-  const [scored, setScored] = useState(false);
+  // Scoring runs against a COMMITTED snapshot, never the live textarea value —
+  // otherwise the whole rubric re-ran on every keystroke and a large pasted
+  // note blocked the main thread for hundreds of milliseconds per keypress.
+  const [submitted, setSubmitted] = useState<string | null>(null);
+  const scored = submitted !== null;
 
   const results = useMemo(() => {
-    const text = note.toLowerCase();
+    if (submitted === null) return null;
+    const text = submitted.toLowerCase();
     if (!text.trim()) return null;
 
-    const sections = sliceSections(note);
+    const sections = sliceSections(submitted);
 
     const checks = rubric.map((c) => {
       // Section-scoped checks judge only their own section, so a rich HPI can't
@@ -80,18 +85,25 @@ const QaScorecardPage = () => {
     ].join("\n");
 
     return { checks, pct, grade: g, flags, gaps, summaryText };
-  }, [note]);
+  }, [submitted]);
+
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   const runScore = useCallback(() => {
-    if (note.trim()) setScored(true);
+    if (!note.trim()) return;
+    setSubmitted(note);
+    // Move focus to the results heading so AT users know results appeared;
+    // scrolling alone is invisible to a screen reader.
+    requestAnimationFrame(() => headingRef.current?.focus());
   }, [note]);
 
   const loadSample = useCallback(() => {
     setNote(sampleNote);
-    setScored(false);
+    setSubmitted(null);
   }, []);
 
-  const wordCount = note.trim() ? note.trim().split(/\s+/).length : 0;
+  // Memoized: splitting a multi-megabyte note on every render was itself costly.
+  const wordCount = useMemo(() => (note.trim() ? note.trim().split(/\s+/).length : 0), [note]);
 
   return (
     <div className={`min-h-screen flex flex-col bg-background ${scored ? "print-report-page" : ""}`}>
@@ -132,6 +144,11 @@ const QaScorecardPage = () => {
       </section>
 
       <main className="container mx-auto py-8 px-4 flex-1 max-w-5xl">
+        {/* Persistent live region — a region inserted at the same moment as its
+            content does not reliably announce, so it stays mounted. */}
+        <div role="status" aria-live="polite" className="sr-only">
+          {scored && results ? `Results ready. Grade ${results.grade.letter}, ${results.pct} out of 100. ${results.gaps.length} element${results.gaps.length !== 1 ? "s" : ""} to strengthen.` : ""}
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input */}
           <div>
@@ -144,7 +161,7 @@ const QaScorecardPage = () => {
             <textarea
               id="note"
               value={note}
-              onChange={(e) => { setNote(e.target.value); setScored(false); }}
+              onChange={(e) => { setNote(e.target.value); setSubmitted(null); }}
               rows={20}
               placeholder="Paste a de-identified ambient-scribe or clinical note here…"
               className="w-full rounded-xl border border-border bg-background p-4 text-sm text-foreground font-body leading-relaxed focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 resize-y"
@@ -166,6 +183,9 @@ const QaScorecardPage = () => {
             <AnimatePresence mode="wait">
               {scored && results ? (
                 <motion.div key="res" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-4 print-area">
+                  <h2 ref={headingRef} tabIndex={-1} className="font-display text-lg font-bold text-foreground outline-none">
+                    Your results
+                  </h2>
                   {/* Score */}
                   <div className="glass-card rounded-2xl p-6 flex items-center gap-6">
                     <div className="text-center flex-shrink-0">
@@ -250,7 +270,7 @@ const QaScorecardPage = () => {
           </div>
         </div>
 
-        <p className="font-mono text-[10px] text-muted-foreground/70 mt-6 text-center max-w-3xl mx-auto">
+        <p className="font-mono text-[10px] text-muted-foreground mt-6 text-center max-w-3xl mx-auto">
           v1 uses transparent keyword heuristics to prove the rubric; the production tier swaps in an LLM grader (behind a BAA) for semantic scoring and hallucination detection. Grades are advisory — a qualified professional must review every note.
         </p>
       </main>

@@ -36,7 +36,7 @@ const AppealForgePage = () => {
   const [levelId, setLevelId] = useState(appealLevels[0].id);
   const [carc, setCarc] = useState(denialTypes[0].carc);
   const [fields, setFields] = useState<ClaimFields>(emptyFields);
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<"idle" | "ok" | "fail">("idle");
 
   const payer = payers.find((p) => p.id === payerId)!;
   const denial = denialTypes.find((d) => d.id === denialId)!;
@@ -102,11 +102,13 @@ ${orToken(fields.contact, "Phone · Email")}
 
   const copy = useCallback(async () => {
     try {
+      // navigator.clipboard is undefined on non-secure origins; without a
+      // failure state this button silently did nothing.
       await navigator.clipboard.writeText(letter);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
+      setCopyState("ok");
+      window.setTimeout(() => setCopyState("idle"), 1800);
     } catch {
-      setCopied(false);
+      setCopyState("fail");
     }
   }, [letter]);
 
@@ -115,9 +117,16 @@ ${orToken(fields.contact, "Phone · Email")}
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `appeal-${denial.id}-${(fields.claimNo || "draft").replace(/\s+/g, "")}.txt`;
+    // Strip anything that isn't filename-safe; a blank claim number would
+    // otherwise yield a trailing-dash name.
+    const safe = (fields.claimNo || "").replace(/[^A-Za-z0-9._-]/g, "").slice(0, 40) || "draft";
+    a.download = `appeal-${denial.id}-${safe}.txt`;
+    // Attach + defer revoke: WebKit/Gecko can abort a download whose object
+    // URL is revoked in the same task, or whose anchor is detached.
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(url);
+    a.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
   }, [letter, denial.id, fields.claimNo]);
 
   const inputCls =
@@ -245,9 +254,13 @@ ${orToken(fields.contact, "Phone · Email")}
                 </div>
                 <div className="flex items-center gap-2">
                   <button onClick={copy} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground font-mono text-[11px] font-bold hover:opacity-90 transition-opacity">
-                    {copied ? <><Check className="w-3.5 h-3.5" /> Copied</> : <><Copy className="w-3.5 h-3.5" /> Copy</>}
+                    {copyState === "ok" ? <><Check className="w-3.5 h-3.5" /> Copied</> : <><Copy className="w-3.5 h-3.5" /> Copy</>}
                   </button>
-                  <button onClick={download} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border text-muted-foreground font-mono text-[11px] hover:text-primary hover:border-primary/40 transition-colors">
+                  <button
+                    onClick={download}
+                    aria-label="Download appeal letter as a .txt file"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border text-muted-foreground font-mono text-[11px] hover:text-primary hover:border-primary/40 transition-colors"
+                  >
                     <Download className="w-3.5 h-3.5" /> .txt
                   </button>
                 </div>
@@ -261,7 +274,7 @@ ${orToken(fields.contact, "Phone · Email")}
                 {letter}
               </motion.pre>
             </div>
-            <p className="font-mono text-[10px] text-muted-foreground/70 mt-3 px-1">
+            <p className="font-mono text-[10px] text-muted-foreground mt-3 px-1">
               Draft only — review, verify against the medical record, and have an authorized representative sign before sending. The production tier adds LLM-drafted clinical argumentation behind a BAA plus payer-specific formatting.
             </p>
           </div>
