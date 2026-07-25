@@ -186,7 +186,7 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
           </div>
           <div>
             <h3 className="font-display text-sm font-bold text-foreground mb-0.5">Capability Map</h3>
-            <p className="font-body text-[10px] text-muted-foreground">7 Domains · 36 Processes</p>
+            <p className="font-body text-[10px] text-muted-foreground">7 Domains · 30 Processes</p>
           </div>
           <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
         </Link>

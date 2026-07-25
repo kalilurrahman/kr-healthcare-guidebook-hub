@@ -25,7 +25,7 @@ const resources: ResourceItem[] = [
     name: "Healthcare DX Handbook 2026 — Standalone HTML",
     filename: "Healthcare_DX_Handbook_2026.html",
     type: "html",
-    size: "~1.8 MB",
+    size: "~300 KB",
     description: "Self-contained single-file HTML reader with 23 chapters, sidebar navigation, and embedded styling — zero dependencies, works offline.",
   },
   {
@@ -39,22 +39,15 @@ const resources: ResourceItem[] = [
     name: "Healthcare DX Handbook 2026 — DOCX Edition",
     filename: "Healthcare_DX_Handbook_2026.docx",
     type: "docx",
-    size: "~3 MB",
+    size: "~800 KB",
     description: "Editable Word document with full handbook content — ideal for annotation, internal distribution, and customisation.",
   },
   {
     name: "Healthcare Business Capability Map v3 — Full Edition",
     filename: "Healthcare_BCM_v3_Full_Edition.xlsx",
     type: "xlsx",
-    size: "7 Domains · 36 Processes",
+    size: "7 Domains · Full Matrix",
     description: "Comprehensive healthcare business capability matrix with capability areas, processes, technology players, maturity ratings, and competitive landscape across enterprise, mid-size, niche, payer, and digital-first segments.",
-  },
-  {
-    name: "Healthcare GCC Handbook — Comprehensive DOCX",
-    filename: "KR_HC_GG.docx",
-    type: "docx",
-    size: "~3 MB",
-    description: "Full editable Word document with all 60 strategic chapters across 8 volumes — tables, diagrams, and executive summaries for annotation and internal distribution.",
   },
   {
     name: "Healthcare Transformation Playbook — Full Markdown",
