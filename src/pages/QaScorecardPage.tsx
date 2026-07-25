@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
+import { LeadCapture } from "@/components/LeadCapture";
 import { rubric, safetyFlags, sampleNote } from "@/data/qa-scorecard-data";
 
 type Status = "good" | "partial" | "missing";
@@ -57,8 +58,18 @@ const QaScorecardPage = () => {
 
     const flags = safetyFlags.filter((f) => f.patterns.some((p) => text.includes(p)));
     const gaps = checks.filter((c) => c.status !== "good");
+    const g = grade(pct);
 
-    return { checks, pct, grade: grade(pct), flags, gaps };
+    const summaryText = [
+      `Grade ${g.letter} — ${pct}/100 QA score`,
+      "",
+      "Rubric:",
+      ...checks.map((c) => `- ${c.label}: ${c.status} (${c.earned}/${c.weight} pt)`),
+      ...(flags.length ? ["", `Safety flags: ${flags.map((f) => f.label).join(", ")}`] : []),
+      ...(gaps.length ? ["", `Fix first: ${gaps.map((c) => c.label).join(", ")}`] : []),
+    ].join("\n");
+
+    return { checks, pct, grade: g, flags, gaps, summaryText };
   }, [note]);
 
   const runScore = useCallback(() => {
@@ -144,7 +155,7 @@ const QaScorecardPage = () => {
           <div>
             <AnimatePresence mode="wait">
               {scored && results ? (
-                <motion.div key="res" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-4">
+                <motion.div key="res" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-4 print-area">
                   {/* Score */}
                   <div className="glass-card rounded-2xl p-6 flex items-center gap-6">
                     <div className="text-center flex-shrink-0">
@@ -216,6 +227,8 @@ const QaScorecardPage = () => {
                       </div>
                     </div>
                   )}
+
+                  <LeadCapture tool="Ambient Note QA Scorecard" summary={results.summaryText} />
                 </motion.div>
               ) : (
                 <motion.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-full min-h-[300px] rounded-2xl border border-dashed border-border flex flex-col items-center justify-center text-center p-8">

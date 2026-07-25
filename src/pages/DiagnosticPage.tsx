@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft, Gauge, ClipboardCheck, RotateCcw, ArrowRight,
-  Target, CheckCircle2, ExternalLink, ListChecks, Activity,
+  Target, CheckCircle2, ListChecks, Activity,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
+import { LeadCapture } from "@/components/LeadCapture";
 import {
   diagnosticQuestions, diagnosticSections, maturityLevels, boardQuestions,
 } from "@/data/diagnostic-data";
@@ -77,7 +78,18 @@ const DiagnosticPage = () => {
       .sort((a, b) => answers[a.id] - answers[b.id])
       .map((q) => ({ q, level: answers[q.id] }));
 
-    return { answered, overall, band, sectionScores, dimensions, gaps };
+    const name = maturityLevels.find((l) => l.level === band)?.name ?? "";
+    const summaryText = [
+      `Overall maturity: L${band} ${name} (${overall.toFixed(1)}/5 · ${answered.length}/${diagnosticQuestions.length} answered)`,
+      "",
+      "Section scores:",
+      ...sectionScores.filter((s) => s.count > 0).map((s) => `- ${s.label}: ${s.score.toFixed(1)}/5`),
+      "",
+      gaps.length ? "Priority roadmap:" : "No gaps below the target band.",
+      ...gaps.map((g, i) => `${i + 1}. ${g.q.dimension} (L${g.level}) — ${g.q.lowRec}`),
+    ].join("\n");
+
+    return { answered, overall, band, sectionScores, dimensions, gaps, summaryText };
   }, [answers]);
 
   const generate = useCallback(() => {
@@ -228,7 +240,7 @@ const DiagnosticPage = () => {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="mt-14"
+                className="mt-14 print-area"
               >
                 <div className="flex items-center gap-2 mb-6">
                   <div className="h-px flex-1 bg-border" />
@@ -354,25 +366,15 @@ const DiagnosticPage = () => {
                   </ul>
                 </div>
 
-                {/* CTA + reset */}
-                <div className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
-                  <p className="font-body text-sm text-foreground mb-1">This diagnostic scores you against the handbook's proprietary benchmark bands and maturity model.</p>
-                  <p className="font-body text-xs text-muted-foreground mb-4">A full engagement adds your live KPIs, a peer-benchmarked scorecard, and a costed 90-day transformation plan.</p>
-                  <div className="flex items-center justify-center gap-3 flex-wrap">
-                    <a
-                      href="https://www.linkedin.com/in/kalilurrahman/"
-                      target="_blank" rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-mono text-xs font-bold hover:opacity-90 transition-opacity"
-                    >
-                      Discuss your roadmap <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                    <button
-                      onClick={reset}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-muted-foreground font-mono text-xs hover:text-primary hover:border-primary/40 transition-colors"
-                    >
-                      <RotateCcw className="w-3.5 h-3.5" /> Start over
-                    </button>
-                  </div>
+                {/* Lead funnel + reset */}
+                <LeadCapture tool="RCM & GCC Maturity Diagnostic" summary={results.summaryText} />
+                <div className="no-print flex justify-center mt-4">
+                  <button
+                    onClick={reset}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-muted-foreground font-mono text-xs hover:text-primary hover:border-primary/40 transition-colors"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" /> Start over
+                  </button>
                 </div>
               </motion.div>
             )}

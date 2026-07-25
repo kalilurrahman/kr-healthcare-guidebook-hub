@@ -365,3 +365,31 @@
     animation-play-state: paused;
   }
 }
+
+/* Print / Save-as-PDF: isolate a .print-area and render it light, hide chrome. */
+@media print {
+  html, body { background: #fff !important; }
+  * { visibility: hidden !important; }
+  .print-area, .print-area * { visibility: visible !important; }
+  .print-area, .print-area * { color: #16211f !important; }
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 24px;
+    margin: 0;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* Whiten result cards so dark-theme surfaces print legibly. */
+  .print-area .card-pharma,
+  .print-area .glass-card {
+    background: #ffffff !important;
+    border-color: #d5dddb !important;
+    box-shadow: none !important;
+  }
+  .print-area .bg-muted { background: #e7ecea !important; }
+  .no-print { display: none !important; }
+}
