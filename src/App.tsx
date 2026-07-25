@@ -10,6 +10,8 @@ import BcmPage from "./pages/BcmPage.tsx";
 import DiagnosticPage from "./pages/DiagnosticPage.tsx";
 import AppealForgePage from "./pages/AppealForgePage.tsx";
 import QaScorecardPage from "./pages/QaScorecardPage.tsx";
+import AiAssurancePage from "./pages/AiAssurancePage.tsx";
+import AgentOpsPage from "./pages/AgentOpsPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/diagnostic" element={<DiagnosticPage />} />
           <Route path="/appeal-forge" element={<AppealForgePage />} />
           <Route path="/note-qa" element={<QaScorecardPage />} />
+          <Route path="/ai-assurance" element={<AiAssurancePage />} />
+          <Route path="/agentops" element={<AgentOpsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
