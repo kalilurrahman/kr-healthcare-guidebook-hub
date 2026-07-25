@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu, Gauge, FileText, ClipboardCheck, ShieldCheck, Bot } from "lucide-react";
+import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu, Gauge, FileText, ClipboardCheck, ShieldCheck, Bot, CalendarClock } from "lucide-react";
 import { transformationPillars } from "@/data/healthcare-data";
 import { CuratedSignals } from "@/components/CuratedSignals";
 import { LeaderQuotes } from "@/components/LeaderQuotes";
@@ -117,6 +117,19 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
             <div>
               <h3 className="font-display text-sm font-bold text-foreground mb-0.5">AgentOps GCC Launch</h3>
               <p className="font-body text-xs text-muted-foreground">Pick RCM workflows and autonomy — get a risk-capped launch plan, PDD outline, and go-live KPIs.</p>
+            </div>
+          </Link>
+          <Link
+            to="/pa-accelerate"
+            className="group flex flex-col gap-3 rounded-2xl border border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-colors p-5 no-underline"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2.5 rounded-xl bg-primary/10"><CalendarClock className="w-5 h-5 text-primary" /></div>
+              <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
+            </div>
+            <div>
+              <h3 className="font-display text-sm font-bold text-foreground mb-0.5">PA-Accelerate</h3>
+              <p className="font-body text-xs text-muted-foreground">Score your prior-auth operation against CMS-0057-F, and build a payer-ready PA request packet.</p>
             </div>
           </Link>
           <Link

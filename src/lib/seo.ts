@@ -114,6 +114,12 @@ export const routeSeo: Record<string, SeoInput> = {
     description:
       "Pick RCM workflows and target autonomy, and get a risk-capped launch plan: PDD outline, exception register, five-day enablement schedule and go-live KPIs.",
   },
+  paAccelerate: {
+    path: "/pa-accelerate",
+    title: "PA-Accelerate — Prior Authorization Readiness & Packet Builder",
+    description:
+      "Check your prior-authorization operation against the CMS-0057-F obligations, then generate a payer-ready PA request that addresses medical necessity the way reviewers assess it.",
+  },
   regulatory: {
     path: "/regulatory",
     title: "Regulatory Calendar 2026–2027",
