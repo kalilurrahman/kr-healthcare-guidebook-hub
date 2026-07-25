@@ -37,7 +37,7 @@ export const bcmDomainColors: Record<string, string> = {
 
 export const bcmStats = [
   { value: "7", label: "Capability Domains" },
-  { value: "36", label: "Business Processes" },
+  { value: "30", label: "Business Processes" },
   { value: "200+", label: "Technology Players" },
   { value: "5", label: "Player Segments" },
 ];

@@ -70,7 +70,7 @@ export const gccMetrics: GccMetric[] = [
 ];
 
 export const gccHighlightStats = [
-  { value: "37", label: "Metrics Tracked" },
+  { value: "34", label: "Metrics Tracked" },
   { value: "9", label: "Dimensions" },
   { value: "500+", label: "Target GCC FTEs" },
   { value: "1,700+", label: "GCCs in India" },

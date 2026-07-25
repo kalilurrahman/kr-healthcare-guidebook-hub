@@ -56,8 +56,8 @@ The **Healthcare GCC Digital Transformation Handbook** provides deep insights in
 | Route | Module | What it is |
 | --- | --- | --- |
 | `/reader` | **Online Reader** | The 23-chapter, 9-part DX Handbook 2026 with executive summaries, KPI tables and board questions |
-| `/gcc-metrics` | **GCC Maturity Metrics** | 37 benchmarked metrics across 9 maturity dimensions |
-| `/bcm` | **Business Capability Map** | 7 capability domains, 36 business processes, and 200+ named technology players across five market segments |
+| `/gcc-metrics` | **GCC Maturity Metrics** | 34 benchmarked metrics across 9 maturity dimensions |
+| `/bcm` | **Business Capability Map** | 7 capability domains, 30 business processes, and 200+ named technology players across five market segments |
 
 ### AI-Native Tools
 
@@ -68,6 +68,10 @@ Interactive tools built on the handbook's benchmarks. All three run **entirely i
 | `/diagnostic` | **RCM & GCC Maturity Diagnostic** | Scores 12 dimensions of revenue cycle, AI adoption and operating model against best-in-class benchmarks, returning a maturity band (L1 → L5) and a prioritized roadmap |
 | `/appeal-forge` | **AppealForge** | Turns a payer + denial reason + claim details into a payer-specific, clinically-argued appeal letter, with the evidence checklist that maximizes overturn |
 | `/note-qa` | **Ambient Note QA Scorecard** | Grades an ambient-scribe or clinical note against a 9-dimension completeness & CDI/coding rubric, flagging specificity gaps and ambient-AI safety issues |
+| `/agentops` | **AgentOps GCC Launch** | Turns selected RCM workflows and a target autonomy level into a risk-capped launch plan: PDD outline, exception register, five-day enablement schedule and go-live KPIs |
+| `/ai-assurance` | **AI Assurance · ACUITAS™** | The seven ACUITAS pillars applied to agentic AI, with a 14-gate readiness check scoring an assurance level from L1 Ad Hoc to L5 Self-Improving |
+| `/pa-accelerate` | **PA-Accelerate** | Scores a prior-authorization operation against the CMS-0057-F obligations, and builds a payer-ready PA request packet per service category |
+| `/regulatory` | **Regulatory Calendar 2026–27** | The rules binding US healthcare operations through 2027, each with dates, requirements, revenue-cycle impact, GCC implications and primary sources |
 
 Results from the Diagnostic and Scorecard can be copied or printed to a clean one-page PDF.
 

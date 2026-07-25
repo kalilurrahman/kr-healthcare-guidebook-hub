@@ -76,13 +76,13 @@ export const routeSeo: Record<string, SeoInput> = {
     path: "/gcc-metrics",
     title: "GCC Maturity Benchmarks",
     description:
-      "37 benchmarked metrics across 9 dimensions for evaluating healthcare Global Capability Centre maturity, from strategic alignment to value delivered.",
+      "34 benchmarked metrics across 9 dimensions for evaluating healthcare Global Capability Centre maturity, from strategic alignment to value delivered.",
   },
   bcm: {
     path: "/bcm",
     title: "Healthcare Business Capability Map",
     description:
-      "7 capability domains, 36 business processes and 200+ named technology players across enterprise, mid-market, niche, payer and digital-first segments.",
+      "7 capability domains, 30 business processes and 200+ named technology players across enterprise, mid-market, niche, payer and digital-first segments.",
   },
   diagnostic: {
     path: "/diagnostic",
@@ -113,6 +113,12 @@ export const routeSeo: Record<string, SeoInput> = {
     title: "AgentOps GCC Launch Planner",
     description:
       "Pick RCM workflows and target autonomy, and get a risk-capped launch plan: PDD outline, exception register, five-day enablement schedule and go-live KPIs.",
+  },
+  paAccelerate: {
+    path: "/pa-accelerate",
+    title: "PA-Accelerate — Prior Authorization Readiness & Packet Builder",
+    description:
+      "Check your prior-authorization operation against the CMS-0057-F obligations, then generate a payer-ready PA request that addresses medical necessity the way reviewers assess it.",
   },
   regulatory: {
     path: "/regulatory",

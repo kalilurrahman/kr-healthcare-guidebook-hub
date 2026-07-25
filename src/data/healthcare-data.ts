@@ -3,14 +3,14 @@ import type { HealthcareChapter, HealthcareVolume, HandbookStats } from "@/types
 export const handbookStats: HandbookStats = {
   chapters: 60,
   volumes: 8,
-  playbooks: 61,
+  playbooks: 58,
   words: "120K+",
 };
 
 export const coverStats = [
   { value: "60", label: "Strategic Chapters" },
   { value: "8", label: "Volumes" },
-  { value: "61", label: "RCM Playbooks" },
+  { value: "58", label: "RCM Playbooks" },
   { value: "120K+", label: "Words" },
 ];
 

@@ -13,6 +13,7 @@ import QaScorecardPage from "./pages/QaScorecardPage.tsx";
 import AiAssurancePage from "./pages/AiAssurancePage.tsx";
 import AgentOpsPage from "./pages/AgentOpsPage.tsx";
 import RegulatoryPage from "./pages/RegulatoryPage.tsx";
+import PaAcceleratePage from "./pages/PaAcceleratePage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/ai-assurance" element={<AiAssurancePage />} />
           <Route path="/agentops" element={<AgentOpsPage />} />
           <Route path="/regulatory" element={<RegulatoryPage />} />
+          <Route path="/pa-accelerate" element={<PaAcceleratePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
