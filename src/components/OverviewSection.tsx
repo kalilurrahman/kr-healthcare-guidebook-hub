@@ -136,7 +136,7 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
       </div>
 
       {/* Quick Navigation Cards — prominent */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <Link to="/reader" className="card-pharma group flex flex-col items-center gap-3 text-center no-underline hover:border-primary/50 transition-colors p-5">
           <div className="p-3 rounded-xl bg-primary/10">
             <BookOpen className="w-6 h-6 text-primary" />
@@ -154,6 +154,16 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
           <div>
             <h3 className="font-display text-sm font-bold text-foreground mb-0.5">GCC Metrics</h3>
             <p className="font-body text-[10px] text-muted-foreground">37 Benchmarks · 9 Dimensions</p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+        </Link>
+        <Link to="/regulatory" className="card-pharma group flex flex-col items-center gap-3 text-center no-underline hover:border-primary/50 transition-colors p-5">
+          <div className="p-3 rounded-xl bg-teal/10">
+            <Shield className="w-6 h-6 text-teal" />
+          </div>
+          <div>
+            <h3 className="font-display text-sm font-bold text-foreground mb-0.5">Regulatory Calendar</h3>
+            <p className="font-body text-[10px] text-muted-foreground">2026–27 · 5 Rules</p>
           </div>
           <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
         </Link>
