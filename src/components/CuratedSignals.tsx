@@ -8,6 +8,8 @@ interface Insight {
   stat: string;
   detail: string;
   source: string;
+  /** Data vintage — REQUIRED so every signal card shows how current it is. */
+  asOf: string;
   href: string;
 }
 
@@ -20,6 +22,7 @@ const insights: Insight[] = [
     stat: "$8.6T by 2033",
     detail: "CMS actuaries project NHE to grow at 5.6% CAGR, outpacing GDP (4.3%), reaching 20.3% of GDP by 2033.",
     source: "CMS Office of the Actuary",
+    asOf: "Projections 2024–33",
     href: "https://www.cms.gov/data-research/statistics-trends-and-reports/national-health-expenditure-data/nhe-fact-sheet",
   },
   {
@@ -28,7 +31,8 @@ const insights: Insight[] = [
     headline: "Kaufman Hall National Hospital Flash Report",
     stat: "3.9% median op margin",
     detail: "Operating margins stabilized in 2025 after two years of losses, but 40% of hospitals still operate below breakeven.",
-    source: "Kaufman Hall 2025",
+    source: "Kaufman Hall",
+    asOf: "2024 data",
     href: "https://www.kaufmanhall.com/insights/research-report/national-hospital-flash-report",
   },
   {
@@ -37,7 +41,8 @@ const insights: Insight[] = [
     headline: "Deloitte 2025 Health Care Outlook — GenAI at Scale",
     stat: "63% adopting GenAI",
     detail: "Ambient documentation, prior-auth automation and coding co-pilots dominate deployed use cases; ROI now measurable in FTE hours.",
-    source: "Deloitte Insights 2025",
+    source: "Deloitte Insights",
+    asOf: "2025",
     href: "https://www2.deloitte.com/us/en/insights/industry/health-care/health-care-industry-outlook.html",
   },
   {
@@ -47,6 +52,7 @@ const insights: Insight[] = [
     stat: "54% of Medicare",
     detail: "MA enrollment reached 34.1M in 2025 — more than half of eligible Medicare beneficiaries; risk-based capabilities are table stakes.",
     source: "Kaiser Family Foundation",
+    asOf: "2025",
     href: "https://www.kff.org/medicare/issue-brief/medicare-advantage-in-2025-enrollment-update-and-key-trends/",
   },
   {
@@ -56,6 +62,7 @@ const insights: Insight[] = [
     stat: "$10.1B in 2024",
     detail: "Funding stabilized after the 2022–23 reset. AI-native startups captured 40% of dollars; RCM automation led verticals.",
     source: "Rock Health",
+    asOf: "2024",
     href: "https://rockhealth.com/insights/2024-year-end-market-overview-a-turning-point-in-digital-health/",
   },
   {
@@ -64,7 +71,8 @@ const insights: Insight[] = [
     headline: "NASSCOM GCC Landscape — Healthcare & Life Sciences",
     stat: "180+ HC GCCs",
     detail: "India hosts 180+ healthcare-focused Global Capability Centers employing ~1.9M professionals — 24% CAGR through 2028.",
-    source: "NASSCOM 2024",
+    source: "NASSCOM",
+    asOf: "FY24",
     href: "https://nasscom.in/knowledge-center/publications/india-global-capability-centers-landscape-report-fy2024",
   },
 ];
@@ -113,7 +121,7 @@ export function CuratedSignals() {
               <div className="font-display text-2xl font-bold text-foreground leading-tight">{it.stat}</div>
               <h3 className="font-display text-sm font-semibold text-foreground leading-snug">{it.headline}</h3>
               <p className="font-body text-xs text-muted-foreground leading-relaxed">{it.detail}</p>
-              <span className="font-mono text-[10px] text-primary/80 mt-auto pt-2 border-t border-border">Source · {it.source}</span>
+              <span className="font-mono text-[10px] text-primary/80 mt-auto pt-2 border-t border-border">Source · {it.source} · {it.asOf}</span>
             </motion.a>
           );
         })}

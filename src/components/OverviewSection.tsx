@@ -11,13 +11,21 @@ interface OverviewSectionProps {
   onNavigateResources?: () => void;
 }
 
-const industryStats = [
-  { value: "$5.3T", label: "US NHE 2024", color: "text-primary" },
-  { value: "$12.8T", label: "Global Market", color: "text-gold" },
-  { value: "5", label: "Healthcare Domains", color: "text-violet" },
-  { value: "60%", label: "AI Adoption", color: "text-coral" },
-  { value: "42%", label: "VBC Spending", color: "text-teal" },
-  { value: "450K", label: "Workforce Gaps", color: "text-indigo" },
+interface IndustryStat {
+  value: string;
+  label: string;
+  color: string;
+  /** Data vintage — REQUIRED so the headline stat bar never shows an undated figure. */
+  asOf: string;
+}
+
+const industryStats: IndustryStat[] = [
+  { value: "$5.3T", label: "US NHE 2024", color: "text-primary", asOf: "CMS · 2024" },
+  { value: "$12.8T", label: "Global Market", color: "text-gold", asOf: "WHO · 2023" },
+  { value: "5", label: "Healthcare Domains", color: "text-violet", asOf: "Taxonomy" },
+  { value: "60%", label: "AI Adoption", color: "text-coral", asOf: "Deloitte · 2025" },
+  { value: "42%", label: "VBC Spending", color: "text-teal", asOf: "HCPLAN · 2023" },
+  { value: "450K", label: "Workforce Gaps", color: "text-indigo", asOf: "AAMC/NSI · 2024" },
 ];
 
 const domainHighlights = [
@@ -47,6 +55,7 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
           >
             <div className={`font-display text-lg sm:text-xl font-bold ${stat.color} mb-1`}>{stat.value}</div>
             <div className="font-mono text-[8px] text-muted-foreground uppercase tracking-wider leading-tight">{stat.label}</div>
+            <div className="font-mono text-[7px] text-muted-foreground/60 mt-1 tracking-wide">{stat.asOf}</div>
           </motion.div>
         ))}
       </motion.div>
