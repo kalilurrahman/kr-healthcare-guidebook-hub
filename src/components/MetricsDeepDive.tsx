@@ -54,7 +54,7 @@ const blocks: MetricBlock[] = [
     title: "Risk, Security & Compliance",
     subtitle: "Breach cost and cyber exposure",
     rows: [
-      { label: "Avg Breach Cost", now: "$10.9M", prior: "$10.1M", benchmark: "< $6M", source: "IBM 2024" },
+      { label: "Avg Breach Cost", now: "$7.42M", prior: "$9.77M", benchmark: "< $6M", source: "IBM 2025" },
       { label: "OCR Reported Breaches", now: "725", prior: "677", benchmark: "n/a", source: "HHS OCR" },
       { label: "Records Exposed", now: "133M", prior: "88M", benchmark: "n/a", source: "HHS OCR" },
       { label: "Ransomware Downtime", now: "12.4 days", prior: "10.1 days", benchmark: "< 3 days", source: "Sophos 2024" },

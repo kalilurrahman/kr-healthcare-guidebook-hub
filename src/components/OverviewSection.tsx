@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu } from "lucide-react";
+import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu, Gauge } from "lucide-react";
 import { transformationPillars } from "@/data/healthcare-data";
 import { CuratedSignals } from "@/components/CuratedSignals";
 import { LeaderQuotes } from "@/components/LeaderQuotes";
@@ -11,20 +11,28 @@ interface OverviewSectionProps {
   onNavigateResources?: () => void;
 }
 
-const industryStats = [
-  { value: "$4.9T", label: "US NHE 2025", color: "text-primary" },
-  { value: "$12.8T", label: "Global Market", color: "text-gold" },
-  { value: "5", label: "Healthcare Domains", color: "text-violet" },
-  { value: "60%", label: "AI Adoption", color: "text-coral" },
-  { value: "42%", label: "VBC Spending", color: "text-teal" },
-  { value: "450K", label: "Workforce Gaps", color: "text-indigo" },
+interface IndustryStat {
+  value: string;
+  label: string;
+  color: string;
+  /** Data vintage — REQUIRED so the headline stat bar never shows an undated figure. */
+  asOf: string;
+}
+
+const industryStats: IndustryStat[] = [
+  { value: "$5.3T", label: "US NHE 2024", color: "text-primary", asOf: "CMS · 2024" },
+  { value: "$12.8T", label: "Global Market", color: "text-gold", asOf: "WHO · 2023" },
+  { value: "5", label: "Healthcare Domains", color: "text-violet", asOf: "Taxonomy" },
+  { value: "60%", label: "AI Adoption", color: "text-coral", asOf: "Deloitte · 2025" },
+  { value: "42%", label: "VBC Spending", color: "text-teal", asOf: "HCPLAN · 2023" },
+  { value: "450K", label: "Workforce Gaps", color: "text-indigo", asOf: "AAMC/NSI · 2024" },
 ];
 
 const domainHighlights = [
   { icon: "🏥", title: "Healthcare Providers", stat: "$1.5T US Acute Care", desc: "Hospital systems, ASCs, physician practices — consolidating into IDNs across the care continuum." },
   { icon: "🛡️", title: "Health Insurance Payers", stat: "Top 5 = 50% Market", desc: "Commercial insurers, Medicare Advantage, Medicaid — managing $4T+ in annual claims." },
   { icon: "💊", title: "PBM & Pharmacy", stat: "Top 3 = 80% Market", desc: "Pharmacy benefit managers, specialty pharmacy, formulary management driving drug cost outcomes." },
-  { icon: "🤝", title: "Care Delivery Orgs", stat: "461 ACOs Active", desc: "ACOs, PCMHs, and risk-bearing entities driving value-based care adoption across 33M+ lives." },
+  { icon: "🤝", title: "Care Delivery Orgs", stat: "476 ACOs Active", desc: "ACOs, PCMHs, and risk-bearing entities driving value-based care adoption across 11.2M+ MSSP beneficiaries." },
   { icon: "🧠", title: "Specialized Services", stat: "28% Telehealth CAGR", desc: "Behavioral health, home health, telehealth, hospice — the fastest-growing segments." },
 ];
 
@@ -47,9 +55,28 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
           >
             <div className={`font-display text-lg sm:text-xl font-bold ${stat.color} mb-1`}>{stat.value}</div>
             <div className="font-mono text-[8px] text-muted-foreground uppercase tracking-wider leading-tight">{stat.label}</div>
+            <div className="font-mono text-[7px] text-muted-foreground/60 mt-1 tracking-wide">{stat.asOf}</div>
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Flagship interactive tool — Maturity Diagnostic */}
+      <Link
+        to="/diagnostic"
+        className="group flex items-center gap-4 rounded-2xl border border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-colors p-5 no-underline"
+      >
+        <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
+          <Gauge className="w-6 h-6 text-primary" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+            <span className="font-mono text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/15 text-primary">New · Free</span>
+            <h3 className="font-display text-base font-bold text-foreground">RCM &amp; GCC Maturity Diagnostic</h3>
+          </div>
+          <p className="font-body text-xs text-muted-foreground">Score your revenue cycle, AI adoption &amp; operating model against best-in-class benchmarks — get a prioritized roadmap in two minutes.</p>
+        </div>
+        <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform flex-shrink-0" />
+      </Link>
 
       {/* Quick Navigation Cards — prominent */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

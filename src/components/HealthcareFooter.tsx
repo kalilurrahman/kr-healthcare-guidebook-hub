@@ -49,6 +49,9 @@ export function HealthcareFooter() {
           <p className="text-center font-mono text-xs text-muted-foreground">
             Curated by <a href="https://kalilurrahman.lovable.app" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-teal-light transition-colors">Kalilur Rahman</a>
           </p>
+          <p className="text-center font-mono text-[10px] text-muted-foreground/70 mt-2">
+            Industry figures are curated literals reflecting the latest public data available for the 2026 edition · each signal is labeled with its vintage · not a live feed
+          </p>
         </div>
       </div>
     </footer>
