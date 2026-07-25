@@ -166,7 +166,7 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
           </div>
           <div>
             <h3 className="font-display text-sm font-bold text-foreground mb-0.5">GCC Metrics</h3>
-            <p className="font-body text-[10px] text-muted-foreground">37 Benchmarks · 9 Dimensions</p>
+            <p className="font-body text-[10px] text-muted-foreground">34 Benchmarks · 9 Dimensions</p>
           </div>
           <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
         </Link>

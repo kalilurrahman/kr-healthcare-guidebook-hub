@@ -76,13 +76,13 @@ export const routeSeo: Record<string, SeoInput> = {
     path: "/gcc-metrics",
     title: "GCC Maturity Benchmarks",
     description:
-      "37 benchmarked metrics across 9 dimensions for evaluating healthcare Global Capability Centre maturity, from strategic alignment to value delivered.",
+      "34 benchmarked metrics across 9 dimensions for evaluating healthcare Global Capability Centre maturity, from strategic alignment to value delivered.",
   },
   bcm: {
     path: "/bcm",
     title: "Healthcare Business Capability Map",
     description:
-      "7 capability domains, 36 business processes and 200+ named technology players across enterprise, mid-market, niche, payer and digital-first segments.",
+      "7 capability domains, 30 business processes and 200+ named technology players across enterprise, mid-market, niche, payer and digital-first segments.",
   },
   diagnostic: {
     path: "/diagnostic",

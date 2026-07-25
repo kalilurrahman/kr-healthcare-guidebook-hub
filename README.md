@@ -56,7 +56,7 @@ The **Healthcare GCC Digital Transformation Handbook** provides deep insights in
 | Route | Module | What it is |
 | --- | --- | --- |
 | `/reader` | **Online Reader** | The 23-chapter, 9-part DX Handbook 2026 with executive summaries, KPI tables and board questions |
-| `/gcc-metrics` | **GCC Maturity Metrics** | 37 benchmarked metrics across 9 maturity dimensions |
+| `/gcc-metrics` | **GCC Maturity Metrics** | 34 benchmarked metrics across 9 maturity dimensions |
 | `/bcm` | **Business Capability Map** | 7 capability domains, 30 business processes, and 200+ named technology players across five market segments |
 
 ### AI-Native Tools

@@ -40,3 +40,34 @@ describe("Capability map — advertised counts match the data", () => {
     expect(new Set(bcmCapabilities.map((c) => c.domain)).size).toBe(bcmDomains.length);
   });
 });
+
+// ---- advertised counts across the rest of the site ----
+import { handbookStats, coverStats, healthcareVolumes, allChapters } from "@/data/healthcare-data";
+import { gccMetrics, gccHighlightStats, gccDimensions } from "@/data/gcc-metrics";
+import { rcmTabs } from "@/data/rcm-playbook-chapters";
+
+describe("Advertised counts match the underlying data", () => {
+  it("chapter and volume counts are real", () => {
+    expect(handbookStats.chapters).toBe(allChapters.length);
+    expect(handbookStats.volumes).toBe(healthcareVolumes.length);
+    expect(coverStats.find((s) => s.label === "Strategic Chapters")!.value).toBe(String(allChapters.length));
+    expect(coverStats.find((s) => s.label === "Volumes")!.value).toBe(String(healthcareVolumes.length));
+  });
+
+  it("the RCM playbook count is the number of playbooks, not the highest id", () => {
+    // rcm-* ids run to 61 but skip 5-7, so the count is 58. Counting by the
+    // highest id is exactly the mistake this guards against.
+    const rcmCount = rcmTabs.flatMap((t) => t.chapters).filter((c) => c.id.startsWith("rcm-")).length;
+    expect(handbookStats.playbooks).toBe(rcmCount);
+    expect(coverStats.find((s) => s.label === "RCM Playbooks")!.value).toBe(String(rcmCount));
+  });
+
+  it("GCC metric and dimension counts are real", () => {
+    expect(gccHighlightStats.find((s) => s.label === "Metrics Tracked")!.value).toBe(String(gccMetrics.length));
+    expect(gccHighlightStats.find((s) => s.label === "Dimensions")!.value).toBe(String(gccDimensions.length));
+  });
+
+  it("every metric belongs to a declared dimension", () => {
+    for (const m of gccMetrics) expect(gccDimensions, m.metric).toContain(m.dimension);
+  });
+});
