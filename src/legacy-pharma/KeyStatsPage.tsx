@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, TrendingUp, Beaker, Factory, ShoppingCart, Heart, Cpu, ExternalLink } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { PharmaFooter } from "@/components/PharmaFooter";
-import pharmaLogo from "@/assets/pharma-logo.png";
+import { PharmaFooter } from "./PharmaFooter";
+import pharmaLogo from "./pharma-logo.png";
 
 interface StatCard {
   value: string;
@@ -60,7 +60,7 @@ const stats: StatCard[] = [
   // Digital Maturity
   { value: "~20%", label: "Digital Leaders in Pharma", interpretation: "Only about 1 in 5 pharma companies qualify as digital leaders. The maturity gap creates competitive advantage for early movers.", chapter: "Ch 2 · Digital Maturity Model", chapterAnchor: "ch02", category: "digital" },
   { value: "80%", label: "Still at Foundational Stage", interpretation: "The vast majority of pharma companies remain at foundational digital maturity — significant whitespace for transformation investment.", chapter: "Ch 2 · Digital Maturity Model", chapterAnchor: "ch02", category: "digital" },
-  { value: "1,600+", label: "GCCs in India", interpretation: "India hosts the world's largest GCC ecosystem. Pharma companies increasingly leverage Indian GCCs for AI, analytics, and digital transformation capabilities.", chapter: "Ch 16 · Pharma GCCs in India", chapterAnchor: "ch16", category: "digital" },
+  { value: "1,700+", label: "GCCs in India", interpretation: "India hosts the world's largest GCC ecosystem. Pharma companies increasingly leverage Indian GCCs for AI, analytics, and digital transformation capabilities.", chapter: "Ch 16 · Pharma GCCs in India", chapterAnchor: "ch16", category: "digital" },
   { value: "40%", label: "Faster AI-Driven Recruitment", interpretation: "AI-powered talent matching and predictive analytics reduce recruitment timelines by 40% in mature GCC operations.", chapter: "Ch 16 · Pharma GCCs in India", chapterAnchor: "ch16", category: "digital" },
   { value: "$45B+", label: "Digital Health VC Investment (2020–24)", interpretation: "Venture capital investment in digital health and AI-pharma assets has exceeded $45B, signalling massive market confidence in digital transformation.", chapter: "Ch 29 · Investment & M&A Strategy", chapterAnchor: "ch29", category: "digital" },
   { value: "70%", label: "Workforce Needs Reskilling by 2027", interpretation: "The talent gap is the #1 barrier to pharma digital transformation. Strategic reskilling programs are essential for execution.", chapter: "Ch 28 · Digital Talent & Workforce", chapterAnchor: "ch28", category: "digital" },

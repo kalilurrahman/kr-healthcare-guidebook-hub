@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft, Gauge, ClipboardCheck, RotateCcw, ArrowRight,
-  Target, CheckCircle2, ExternalLink, ListChecks, Activity,
+  Target, CheckCircle2, ListChecks, Activity,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
+import { LeadCapture } from "@/components/LeadCapture";
 import {
   diagnosticQuestions, diagnosticSections, maturityLevels, boardQuestions,
 } from "@/data/diagnostic-data";
@@ -77,12 +78,29 @@ const DiagnosticPage = () => {
       .sort((a, b) => answers[a.id] - answers[b.id])
       .map((q) => ({ q, level: answers[q.id] }));
 
-    return { answered, overall, band, sectionScores, dimensions, gaps };
+    const name = maturityLevels.find((l) => l.level === band)?.name ?? "";
+    const summaryText = [
+      `Overall maturity: L${band} ${name} (${overall.toFixed(1)}/5 · ${answered.length}/${diagnosticQuestions.length} answered)`,
+      "",
+      "Section scores:",
+      ...sectionScores.filter((s) => s.count > 0).map((s) => `- ${s.label}: ${s.score.toFixed(1)}/5`),
+      "",
+      gaps.length ? "Priority roadmap:" : "No gaps below the target band.",
+      ...gaps.map((g, i) => `${i + 1}. ${g.q.dimension} (L${g.level}) — ${g.q.lowRec}`),
+    ].join("\n");
+
+    return { answered, overall, band, sectionScores, dimensions, gaps, summaryText };
   }, [answers]);
+
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   const generate = useCallback(() => {
     setShowResults(true);
-    requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    requestAnimationFrame(() => {
+      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Scrolling is invisible to AT — move focus so results are announced.
+      headingRef.current?.focus();
+    });
   }, []);
 
   const reset = useCallback(() => {
@@ -92,7 +110,7 @@ const DiagnosticPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className={`min-h-screen flex flex-col bg-background ${showResults ? "print-report-page" : ""}`}>
       {/* Header */}
       <header className="header-glass sticky top-0 z-50 border-b border-border">
         <div className="container mx-auto px-4">
@@ -130,6 +148,12 @@ const DiagnosticPage = () => {
       </section>
 
       <main className="container mx-auto py-8 px-4 flex-1 max-w-3xl">
+        {/* Persistent live region — stays mounted so it announces reliably. */}
+        <div role="status" aria-live="polite" className="sr-only">
+          {showResults && results
+            ? `Results ready. Overall maturity level ${results.band}, ${results.overall.toFixed(1)} out of 5. ${results.gaps.length} gap${results.gaps.length !== 1 ? "s" : ""} to best-in-class.`
+            : ""}
+        </div>
         {/* Progress */}
         <div className="sticky top-14 z-40 -mx-4 px-4 py-3 bg-background/85 backdrop-blur-sm border-b border-border mb-8">
           <div className="flex items-center justify-between gap-4">
@@ -170,34 +194,44 @@ const DiagnosticPage = () => {
                         <h3 className="font-display text-sm font-semibold text-foreground">{q.prompt}</h3>
                         <span className="font-mono text-[9px] text-muted-foreground whitespace-nowrap mt-1 hidden sm:inline">{q.dimension}</span>
                       </div>
-                      <p className="font-mono text-[10px] text-primary/80 mb-3 flex items-center gap-1.5">
+                      <p className="font-mono text-[10px] text-primary mb-3 flex items-center gap-1.5">
                         <Target className="w-3 h-3 flex-shrink-0" /> {q.benchmark}
                       </p>
-                      <div className="space-y-1.5" role="radiogroup" aria-label={q.prompt}>
+                      {/* Native radios: the browser supplies roving tabindex,
+                          arrow-key navigation and aria-checked for free. An
+                          emulated role="radio" button group gave each option its
+                          own tab stop and left arrow keys dead for AT users. */}
+                      <fieldset className="space-y-1.5 border-0 p-0 m-0">
+                        <legend className="sr-only">{q.prompt}</legend>
                         {q.options.map((opt) => {
                           const active = answers[q.id] === opt.level;
                           return (
-                            <button
+                            <label
                               key={opt.level}
-                              role="radio"
-                              aria-checked={active}
-                              onClick={() => select(q.id, opt.level)}
-                              className={`w-full text-left flex items-center gap-3 rounded-lg border px-3 py-2 transition-colors ${
+                              className={`w-full text-left flex items-center gap-3 rounded-lg border px-3 py-2 transition-colors cursor-pointer has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:ring-offset-background ${
                                 active
                                   ? "border-primary bg-primary/10"
                                   : "border-border hover:border-primary/40 hover:bg-muted/40"
                               }`}
                             >
+                              <input
+                                type="radio"
+                                name={q.id}
+                                value={opt.level}
+                                checked={active}
+                                onChange={() => select(q.id, opt.level)}
+                                className="sr-only"
+                              />
                               <span className={`font-mono text-[10px] font-bold w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${
                                 active ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
                               }`}>
                                 L{opt.level}
                               </span>
                               <span className={`font-body text-xs ${active ? "text-foreground" : "text-muted-foreground"}`}>{opt.text}</span>
-                            </button>
+                            </label>
                           );
                         })}
-                      </div>
+                      </fieldset>
                     </div>
                   ))}
                 </div>
@@ -228,11 +262,11 @@ const DiagnosticPage = () => {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="mt-14"
+                className="mt-14 print-area"
               >
                 <div className="flex items-center gap-2 mb-6">
                   <div className="h-px flex-1 bg-border" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">Your Results</span>
+                  <h2 ref={headingRef} tabIndex={-1} className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary outline-none">Your Results</h2>
                   <div className="h-px flex-1 bg-border" />
                 </div>
 
@@ -252,7 +286,7 @@ const DiagnosticPage = () => {
                         </div>
                         <div className="text-right">
                           <div className={`font-display text-3xl font-bold ${s.text}`}>{results.overall.toFixed(1)}<span className="text-muted-foreground text-lg">/5</span></div>
-                          <div className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">weighted score · {results.answered.length}/{total} answered</div>
+                          <div className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">mean across answered · {results.answered.length}/{total} answered</div>
                         </div>
                       </div>
                       <div className="flex gap-1 mb-3">
@@ -293,7 +327,7 @@ const DiagnosticPage = () => {
                       </div>
                     ))}
                   </div>
-                  <p className="font-mono text-[9px] text-muted-foreground/70 mt-3">Faint ring marks the L4 "analytical intelligence" target band.</p>
+                  <p className="font-mono text-[9px] text-muted-foreground mt-3">Faint ring marks the L4 "analytical intelligence" target band.</p>
                 </div>
 
                 {/* Priority roadmap */}
@@ -354,25 +388,15 @@ const DiagnosticPage = () => {
                   </ul>
                 </div>
 
-                {/* CTA + reset */}
-                <div className="rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
-                  <p className="font-body text-sm text-foreground mb-1">This diagnostic scores you against the handbook's proprietary benchmark bands and maturity model.</p>
-                  <p className="font-body text-xs text-muted-foreground mb-4">A full engagement adds your live KPIs, a peer-benchmarked scorecard, and a costed 90-day transformation plan.</p>
-                  <div className="flex items-center justify-center gap-3 flex-wrap">
-                    <a
-                      href="https://www.linkedin.com/in/kalilurrahman/"
-                      target="_blank" rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-mono text-xs font-bold hover:opacity-90 transition-opacity"
-                    >
-                      Discuss your roadmap <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                    <button
-                      onClick={reset}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-muted-foreground font-mono text-xs hover:text-primary hover:border-primary/40 transition-colors"
-                    >
-                      <RotateCcw className="w-3.5 h-3.5" /> Start over
-                    </button>
-                  </div>
+                {/* Lead funnel + reset */}
+                <LeadCapture tool="RCM & GCC Maturity Diagnostic" summary={results.summaryText} />
+                <div className="no-print flex justify-center mt-4">
+                  <button
+                    onClick={reset}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-muted-foreground font-mono text-xs hover:text-primary hover:border-primary/40 transition-colors"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" /> Start over
+                  </button>
                 </div>
               </motion.div>
             )}

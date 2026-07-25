@@ -1,4 +1,4 @@
-import type { Chapter, HandbookStats } from "@/types/pharma.types";
+import type { Chapter, HandbookStats } from "./pharma.types";
 
 export const handbookStats: HandbookStats = {
   chapters: 30,
@@ -44,7 +44,7 @@ const SVG_FIVE_FORCES = `<svg viewBox="0 0 760 230" xmlns="http://www.w3.org/200
   <line x1="580" y1="189" x2="477" y2="132" stroke="hsl(38,72%,53%)" stroke-width="1.2" marker-end="url(#ma)" opacity=".75"/>
   <rect x="305" y="182" width="150" height="44" rx="8" fill="hsl(222,47%,12%)" stroke="hsl(220,16%,22%)" stroke-width="1"/>
   <text x="380" y="200" text-anchor="middle" fill="hsl(38,72%,60%)" font-size="11" font-weight="700">🎓 GCC Talent &amp; India</text>
-  <text x="380" y="217" text-anchor="middle" fill="hsl(215,20%,50%)" font-size="9">1,600+ GCCs · Digital-native</text>
+  <text x="380" y="217" text-anchor="middle" fill="hsl(215,20%,50%)" font-size="9">1,700+ GCCs · Digital-native</text>
   <line x1="380" y1="182" x2="380" y2="150" stroke="hsl(38,72%,53%)" stroke-width="1.2" marker-end="url(#ma)" opacity=".75"/>
 </svg>`;
 
@@ -1201,7 +1201,7 @@ export const chapters: Chapter[] = [
             ["DTx", "Digital Therapeutic", "Software-based medical intervention requiring clinical evidence and regulatory oversight"],
             ["eCTD", "Electronic Common Technical Document", "Globally mandated electronic format for regulatory submissions"],
             ["FAIR", "Findable Accessible Interoperable Reusable", "Framework for organising and managing scientific data for both humans and machines"],
-            ["GCC", "Global Capability Centre", "Dedicated offshore facility providing high-value functions — India hosts 1,600+ with 1.9M employees"],
+            ["GCC", "Global Capability Centre", "Dedicated offshore facility providing high-value functions — India hosts 1,700+ with 1.9M employees"],
             ["MLOps", "Machine Learning Operations", "Practices and tools for deploying, monitoring, and maintaining ML models in production"],
             ["NBA", "Next Best Action", "AI-driven recommendation for optimal HCP engagement based on profile and behaviour"],
             ["OEE", "Overall Equipment Effectiveness", "Manufacturing metric: availability × performance × quality. World-class pharma target: 85%"],
@@ -1296,7 +1296,7 @@ export const chapters: Chapter[] = [
     title: "Pharma Global Capability Centres in India",
     lead: "India's GCC ecosystem as the digital transformation engine for global pharma — capabilities, talent, and strategic value.",
     metrics: [
-      { value: "1,600+", label: "GCCs in India" },
+      { value: "1,700+", label: "GCCs in India" },
       { value: "30+", label: "Pharma MNC GCCs" },
       { value: "60%", label: "Cost Advantage" },
       { value: "40%", label: "Faster AI Recruitment" },
