@@ -84,7 +84,7 @@ const QaScorecardPage = () => {
   const wordCount = note.trim() ? note.trim().split(/\s+/).length : 0;
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className={`min-h-screen flex flex-col bg-background ${scored ? "print-report-page" : ""}`}>
       {/* Header */}
       <header className="header-glass sticky top-0 z-50 border-b border-border">
         <div className="container mx-auto px-4">
