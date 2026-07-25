@@ -7,13 +7,11 @@ import {
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { LeadCapture } from "@/components/LeadCapture";
-import { rubric, safetyFlags, sampleNote } from "@/data/qa-scorecard-data";
+import {
+  rubric, safetyFlags, sampleNote, sliceSections, matchesPattern, countPatterns, contradictionPairs,
+} from "@/data/qa-scorecard-data";
 
 type Status = "good" | "partial" | "missing";
-
-function countMatches(text: string, keywords: string[]): number {
-  return keywords.reduce((n, k) => (text.includes(k) ? n + 1 : n), 0);
-}
 
 function grade(pct: number): { letter: string; tone: "good" | "warn" | "crit" } {
   if (pct >= 90) return { letter: "A", tone: "good" };
@@ -39,12 +37,17 @@ const QaScorecardPage = () => {
     const text = note.toLowerCase();
     if (!text.trim()) return null;
 
+    const sections = sliceSections(note);
+
     const checks = rubric.map((c) => {
+      // Section-scoped checks judge only their own section, so a rich HPI can't
+      // earn CDI credit for a vague assessment. A missing section scores Missing.
+      const target = c.scope ? sections[c.scope] : text;
       let status: Status;
       if (c.mode === "any") {
-        status = c.keywords.some((k) => text.includes(k)) ? "good" : "missing";
+        status = target.trim() && c.patterns.some((p) => matchesPattern(target, p)) ? "good" : "missing";
       } else {
-        const n = countMatches(text, c.keywords);
+        const n = target.trim() ? countPatterns(target, c.patterns) : 0;
         const good = c.goodThreshold ?? 3;
         status = n >= good ? "good" : n >= 1 ? "partial" : "missing";
       }
@@ -56,7 +59,14 @@ const QaScorecardPage = () => {
     const earnedTotal = checks.reduce((s, c) => s + c.earned, 0);
     const pct = Math.round((earnedTotal / totalWeight) * 100);
 
-    const flags = safetyFlags.filter((f) => f.patterns.some((p) => text.includes(p)));
+    const flags = safetyFlags.filter((f) => {
+      if (f.id === "contradiction") {
+        // Fires only when BOTH sides of a pair appear — the earlier single
+        // patterns could never match a real note.
+        return contradictionPairs.some(([a, b]) => text.includes(a) && text.includes(b));
+      }
+      return f.patterns.some((p) => text.includes(p));
+    });
     const gaps = checks.filter((c) => c.status !== "good");
     const g = grade(pct);
 

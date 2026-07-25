@@ -264,7 +264,7 @@ const DiagnosticPage = () => {
                         </div>
                         <div className="text-right">
                           <div className={`font-display text-3xl font-bold ${s.text}`}>{results.overall.toFixed(1)}<span className="text-muted-foreground text-lg">/5</span></div>
-                          <div className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">weighted score · {results.answered.length}/{total} answered</div>
+                          <div className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">mean across answered · {results.answered.length}/{total} answered</div>
                         </div>
                       </div>
                       <div className="flex gap-1 mb-3">

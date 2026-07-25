@@ -1,8 +1,14 @@
 import { useState, useMemo, useCallback } from "react";
 import { Mail, Printer, Copy, Check, ExternalLink } from "lucide-react";
 
-// TODO: replace with BigMo's real intake address to activate the lead funnel.
-const LEAD_INTAKE_EMAIL = "hello@bigmo.example";
+// Set this to BigMo's real intake address to activate the lead funnel.
+// While it is empty, the email CTA is hidden rather than silently mailing a
+// reserved .example address that can never receive anything.
+const LEAD_INTAKE_EMAIL = "";
+
+// mailto: bodies are truncated (or fail to launch a client) past ~2000 chars in
+// several OS/mail-client combinations, so long reports are trimmed with a note.
+const MAILTO_BODY_LIMIT = 1500;
 
 interface LeadCaptureProps {
   tool: string;
@@ -20,8 +26,11 @@ export function LeadCapture({ tool, summary }: LeadCaptureProps) {
 
   const mailtoHref = useMemo(() => {
     const subject = encodeURIComponent(`${tool} — send me the full benchmark pack`);
+    const trimmed = summary.length > MAILTO_BODY_LIMIT
+      ? `${summary.slice(0, MAILTO_BODY_LIMIT)}\n\n[results truncated — full report attached via Print / Save PDF]`
+      : summary;
     const body = encodeURIComponent(
-      `Hi BigMo team,\n\nI ran the ${tool} and would like the full benchmarked pack and a short walkthrough.\n\nMy email: ${email || "[add your email]"}\n\n--- My results ---\n${summary}\n`
+      `Hi BigMo team,\n\nI ran the ${tool} and would like the full benchmarked pack and a short walkthrough.\n\nMy email: ${email || "[add your email]"}\n\n--- My results ---\n${trimmed}\n`
     );
     return `mailto:${LEAD_INTAKE_EMAIL}?subject=${subject}&body=${body}`;
   }, [tool, summary, email]);
@@ -45,22 +54,24 @@ export function LeadCapture({ tool, summary }: LeadCaptureProps) {
         Get a peer-benchmarked scorecard and a costed transformation plan built on your live data.
       </p>
 
-      <div className="flex flex-col sm:flex-row gap-2 mb-3">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@organization.com"
-          aria-label="Your work email"
-          className="flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground font-body focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40"
-        />
-        <a
-          href={mailtoHref}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-mono text-xs font-bold hover:opacity-90 transition-opacity whitespace-nowrap"
-        >
-          <Mail className="w-3.5 h-3.5" /> Email me the pack
-        </a>
-      </div>
+      {LEAD_INTAKE_EMAIL && (
+        <div className="flex flex-col sm:flex-row gap-2 mb-3">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@organization.com"
+            aria-label="Your work email"
+            className="flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground font-body focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40"
+          />
+          <a
+            href={mailtoHref}
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-mono text-xs font-bold hover:opacity-90 transition-opacity whitespace-nowrap"
+          >
+            <Mail className="w-3.5 h-3.5" /> Email me the pack
+          </a>
+        </div>
+      )}
 
       <div className="flex items-center gap-2 flex-wrap">
         <button onClick={copySummary} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border text-muted-foreground font-mono text-[11px] hover:text-primary hover:border-primary/40 transition-colors">
