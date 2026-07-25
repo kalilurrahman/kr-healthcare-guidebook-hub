@@ -12,6 +12,7 @@ import AppealForgePage from "./pages/AppealForgePage.tsx";
 import QaScorecardPage from "./pages/QaScorecardPage.tsx";
 import AiAssurancePage from "./pages/AiAssurancePage.tsx";
 import AgentOpsPage from "./pages/AgentOpsPage.tsx";
+import RegulatoryPage from "./pages/RegulatoryPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/note-qa" element={<QaScorecardPage />} />
           <Route path="/ai-assurance" element={<AiAssurancePage />} />
           <Route path="/agentops" element={<AgentOpsPage />} />
+          <Route path="/regulatory" element={<RegulatoryPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
