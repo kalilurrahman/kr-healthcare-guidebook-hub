@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu } from "lucide-react";
+import { BookOpen, ArrowRight, BarChart3, Layers, Download, TrendingUp, Users, Shield, Cpu, Gauge } from "lucide-react";
 import { transformationPillars } from "@/data/healthcare-data";
 import { CuratedSignals } from "@/components/CuratedSignals";
 import { LeaderQuotes } from "@/components/LeaderQuotes";
@@ -59,6 +59,24 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Flagship interactive tool — Maturity Diagnostic */}
+      <Link
+        to="/diagnostic"
+        className="group flex items-center gap-4 rounded-2xl border border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-colors p-5 no-underline"
+      >
+        <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
+          <Gauge className="w-6 h-6 text-primary" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+            <span className="font-mono text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/15 text-primary">New · Free</span>
+            <h3 className="font-display text-base font-bold text-foreground">RCM &amp; GCC Maturity Diagnostic</h3>
+          </div>
+          <p className="font-body text-xs text-muted-foreground">Score your revenue cycle, AI adoption &amp; operating model against best-in-class benchmarks — get a prioritized roadmap in two minutes.</p>
+        </div>
+        <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform flex-shrink-0" />
+      </Link>
 
       {/* Quick Navigation Cards — prominent */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

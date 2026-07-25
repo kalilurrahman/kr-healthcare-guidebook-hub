@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import ReaderPage from "./pages/ReaderPage.tsx";
 import GccMetricsPage from "./pages/GccMetricsPage.tsx";
 import BcmPage from "./pages/BcmPage.tsx";
+import DiagnosticPage from "./pages/DiagnosticPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/reader" element={<ReaderPage />} />
           <Route path="/gcc-metrics" element={<GccMetricsPage />} />
           <Route path="/bcm" element={<BcmPage />} />
+          <Route path="/diagnostic" element={<DiagnosticPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
