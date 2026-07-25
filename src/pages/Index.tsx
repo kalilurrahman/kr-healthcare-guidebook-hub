@@ -9,6 +9,7 @@ import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { InstallPrompt } from "@/components/InstallPrompt";
 import { IndustryTicker } from "@/components/IndustryTicker";
 import { allChapters, healthcareVolumes } from "@/data/healthcare-data";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 const volumeNavItems = [
   { id: "overview", label: "Overview" },
@@ -29,6 +30,7 @@ const volumeIndexMap: Record<string, number> = {
 };
 
 const Index = () => {
+  useSeo(routeSeo.home);
   const [activeSection, setActiveSection] = useState("overview");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedChapter, setSelectedChapter] = useState<string | null>(null);

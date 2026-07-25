@@ -10,6 +10,7 @@ import { LeadCapture } from "@/components/LeadCapture";
 import {
   rubric, safetyFlags, sampleNote, sliceSections, matchesPattern, countPatterns, contradictionPairs,
 } from "@/data/qa-scorecard-data";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 type Status = "good" | "partial" | "missing";
 
@@ -30,6 +31,7 @@ const statusStyle: Record<Status, { icon: typeof CheckCircle2; text: string; lab
 const toneText: Record<string, string> = { good: "text-teal", warn: "text-gold", crit: "text-coral" };
 
 const QaScorecardPage = () => {
+  useSeo(routeSeo.noteQa);
   const [note, setNote] = useState("");
   // Scoring runs against a COMMITTED snapshot, never the live textarea value —
   // otherwise the whole rubric re-ran on every keystroke and a large pasted

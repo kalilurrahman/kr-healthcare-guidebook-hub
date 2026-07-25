@@ -7,6 +7,7 @@ import {
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { payers, appealLevels, denialTypes } from "@/data/appealforge-data";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 interface ClaimFields {
   patient: string;
@@ -31,6 +32,7 @@ function orToken(value: string, token: string) {
 }
 
 const AppealForgePage = () => {
+  useSeo(routeSeo.appealForge);
   const [payerId, setPayerId] = useState(payers[0].id);
   const [denialId, setDenialId] = useState(denialTypes[0].id);
   const [levelId, setLevelId] = useState(appealLevels[0].id);

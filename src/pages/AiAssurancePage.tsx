@@ -6,8 +6,10 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { LeadCapture } from "@/components/LeadCapture";
 import { acuitasMeta, acuitasPillars, assuranceLevels, assuranceGates } from "@/data/ai-assurance-data";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 const AiAssurancePage = () => {
+  useSeo(routeSeo.aiAssurance);
   const [open, setOpen] = useState<string | null>(acuitasPillars[0].id);
   const [gates, setGates] = useState<Record<string, boolean>>({});
   const [showScore, setShowScore] = useState(false);

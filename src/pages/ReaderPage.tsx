@@ -10,6 +10,7 @@ import {
   ArrowLeft,
   ArrowRight,
 } from "lucide-react";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 /* ──────────── types ──────────── */
 interface Section {
@@ -54,6 +55,7 @@ interface Handbook {
 
 /* ──────────── component ──────────── */
 const ReaderPage = () => {
+  useSeo(routeSeo.reader);
   const [handbook, setHandbook] = useState<Handbook | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeChapter, setActiveChapter] = useState<string>("ch-01");

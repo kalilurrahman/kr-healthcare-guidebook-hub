@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { gccMetrics, gccDimensions, gccDimensionColors, gccHighlightStats } from "@/data/gcc-metrics";
 import type { GccMetric } from "@/data/gcc-metrics";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 function MetricRow({ m, i }: { m: GccMetric; i: number }) {
   const [open, setOpen] = useState(false);
@@ -61,6 +62,7 @@ function MetricRow({ m, i }: { m: GccMetric; i: number }) {
 }
 
 const GccMetricsPage = () => {
+  useSeo(routeSeo.gccMetrics);
   const [activeDimension, setActiveDimension] = useState<string>("all");
 
   const filtered = useMemo(() => {

@@ -11,6 +11,7 @@ import { LeadCapture } from "@/components/LeadCapture";
 import {
   diagnosticQuestions, diagnosticSections, maturityLevels, boardQuestions,
 } from "@/data/diagnostic-data";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 type Answers = Record<string, number>;
 
@@ -46,6 +47,7 @@ function LevelMeter({ level, targetOnly }: { level: number; targetOnly?: boolean
 }
 
 const DiagnosticPage = () => {
+  useSeo(routeSeo.diagnostic);
   const [answers, setAnswers] = useState<Answers>({});
   const [showResults, setShowResults] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
