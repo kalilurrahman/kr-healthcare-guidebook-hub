@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { bcmCapabilities, bcmDomains, bcmStats, type BcmCapability } from "@/data/bcm-data";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 const domainIcons: Record<string, React.ReactNode> = {
   "Patient Access & Experience": <Users className="w-5 h-5" />,
@@ -94,6 +95,7 @@ function CapabilityCard({ cap }: { cap: BcmCapability }) {
 }
 
 export default function BcmPage() {
+  useSeo(routeSeo.bcm);
   const [search, setSearch] = useState("");
   const [activeDomain, setActiveDomain] = useState<string | null>(null);
 

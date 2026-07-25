@@ -5,6 +5,7 @@ import { ArrowLeft, Gavel, ChevronDown, CalendarDays, Building2, ExternalLink, H
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { regulations, regStatusMeta, calendarEntries, verifiedAsOf, type RegStatus } from "@/data/regulatory-data";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 const toneClass: Record<string, string> = {
   teal: "bg-teal/10 text-teal border-teal/30",
@@ -21,6 +22,7 @@ const filters: { id: "all" | RegStatus; label: string }[] = [
 ];
 
 const RegulatoryPage = () => {
+  useSeo(routeSeo.regulatory);
   const [open, setOpen] = useState<string | null>(regulations[0].id);
   const [filter, setFilter] = useState<"all" | RegStatus>("all");
 

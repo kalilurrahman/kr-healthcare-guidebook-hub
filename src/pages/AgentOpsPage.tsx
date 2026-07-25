@@ -6,11 +6,13 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { HealthcareFooter } from "@/components/HealthcareFooter";
 import { LeadCapture } from "@/components/LeadCapture";
 import { agentWorkflows, autonomyLevels, curriculum, gccPhases } from "@/data/agentops-data";
+import { useSeo, routeSeo } from "@/lib/seo";
 
 const riskLabel = (t: number) => (t <= 1 ? "Low" : t === 2 ? "Moderate" : t === 3 ? "Elevated" : t === 4 ? "High" : "Critical");
 const riskTone = (t: number) => (t <= 1 ? "text-teal" : t === 2 ? "text-teal" : t === 3 ? "text-gold" : "text-coral");
 
 const AgentOpsPage = () => {
+  useSeo(routeSeo.agentops);
   const [selected, setSelected] = useState<string[]>(["eligibility", "claim-status"]);
   const [target, setTarget] = useState(4);
   const [showPlan, setShowPlan] = useState(false);

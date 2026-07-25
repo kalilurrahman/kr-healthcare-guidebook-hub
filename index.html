@@ -16,6 +16,60 @@
     <meta name="twitter:description" content="The definitive operating playbook for healthcare executives, GCC leaders, and digital transformation teams — 60 chapters, 8 volumes, 23-chapter DX reader.">
     <link rel="icon" type="image/png" href="/healthcare-icon.png">
     <link rel="apple-touch-icon" href="/healthcare-icon.png">
+
+    <!-- Canonical + social image. twitter:card claims summary_large_image, so an
+         image must actually be present or every share renders blank. Per-route
+         values are set at runtime by src/lib/seo.ts. -->
+    <link rel="canonical" href="https://healthcare.kalilurrahman.com" />
+    <meta property="og:url" content="https://healthcare.kalilurrahman.com" />
+    <meta property="og:site_name" content="Healthcare GCC &amp; Digital Transformation Handbook" />
+    <meta property="og:image" content="https://healthcare.kalilurrahman.com/og-image.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="800" />
+    <meta name="twitter:image" content="https://healthcare.kalilurrahman.com/og-image.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://healthcare.kalilurrahman.com/#website",
+          "url": "https://healthcare.kalilurrahman.com",
+          "name": "Healthcare GCC & Digital Transformation Handbook",
+          "description": "The definitive operating playbook for healthcare executives, GCC leaders, and revenue cycle professionals.",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://healthcare.kalilurrahman.com/#author" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://healthcare.kalilurrahman.com/#author",
+          "name": "Kalilur Rahman",
+          "jobTitle": "Global IT Executive · AI Thought Leader",
+          "url": "https://kalilurrahman.lovable.app",
+          "sameAs": [
+            "https://www.linkedin.com/in/kalilurrahman/",
+            "https://github.com/kalilurrahman"
+          ]
+        },
+        {
+          "@type": "Book",
+          "@id": "https://healthcare.kalilurrahman.com/#handbook",
+          "name": "Healthcare GCC & Digital Transformation Handbook",
+          "author": { "@id": "https://healthcare.kalilurrahman.com/#author" },
+          "numberOfPages": 60,
+          "bookEdition": "Comprehensive Edition 2025–2026",
+          "inLanguage": "en",
+          "about": [
+            "Healthcare Revenue Cycle Management",
+            "Global Capability Centers",
+            "Healthcare Digital Transformation",
+            "Agentic AI Governance"
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
