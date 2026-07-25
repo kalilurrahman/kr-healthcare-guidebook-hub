@@ -73,7 +73,7 @@ export const gccHighlightStats = [
   { value: "37", label: "Metrics Tracked" },
   { value: "9", label: "Dimensions" },
   { value: "500+", label: "Target GCC FTEs" },
-  { value: "1,600+", label: "GCCs in India" },
+  { value: "1,700+", label: "GCCs in India" },
   { value: "-40%", label: "Cost Reduction" },
   { value: "40%", label: "Faster Claims Resolution" },
 ];

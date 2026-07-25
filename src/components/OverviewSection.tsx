@@ -12,7 +12,7 @@ interface OverviewSectionProps {
 }
 
 const industryStats = [
-  { value: "$4.9T", label: "US NHE 2025", color: "text-primary" },
+  { value: "$5.3T", label: "US NHE 2024", color: "text-primary" },
   { value: "$12.8T", label: "Global Market", color: "text-gold" },
   { value: "5", label: "Healthcare Domains", color: "text-violet" },
   { value: "60%", label: "AI Adoption", color: "text-coral" },
@@ -24,7 +24,7 @@ const domainHighlights = [
   { icon: "🏥", title: "Healthcare Providers", stat: "$1.5T US Acute Care", desc: "Hospital systems, ASCs, physician practices — consolidating into IDNs across the care continuum." },
   { icon: "🛡️", title: "Health Insurance Payers", stat: "Top 5 = 50% Market", desc: "Commercial insurers, Medicare Advantage, Medicaid — managing $4T+ in annual claims." },
   { icon: "💊", title: "PBM & Pharmacy", stat: "Top 3 = 80% Market", desc: "Pharmacy benefit managers, specialty pharmacy, formulary management driving drug cost outcomes." },
-  { icon: "🤝", title: "Care Delivery Orgs", stat: "461 ACOs Active", desc: "ACOs, PCMHs, and risk-bearing entities driving value-based care adoption across 33M+ lives." },
+  { icon: "🤝", title: "Care Delivery Orgs", stat: "476 ACOs Active", desc: "ACOs, PCMHs, and risk-bearing entities driving value-based care adoption across 11.2M+ MSSP beneficiaries." },
   { icon: "🧠", title: "Specialized Services", stat: "28% Telehealth CAGR", desc: "Behavioral health, home health, telehealth, hospice — the fastest-growing segments." },
 ];
 

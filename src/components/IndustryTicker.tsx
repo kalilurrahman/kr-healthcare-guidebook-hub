@@ -10,16 +10,16 @@ interface TickerItem {
 // Curated industry signals — sourced from CMS NHE, CBO, McKinsey, Deloitte,
 // KFF, Rock Health, HIMSS, WHO, and NASSCOM public reports (2024–2026).
 const signals: TickerItem[] = [
-  { label: "US NHE 2025", value: "$4.9T", trend: "up", source: "CMS" },
+  { label: "US NHE 2024", value: "$5.3T", trend: "up", source: "CMS OACT" },
   { label: "NHE Growth CAGR", value: "5.6%", trend: "up", source: "CMS OACT" },
-  { label: "NHE % of GDP", value: "19.7%", trend: "up", source: "CMS" },
+  { label: "NHE % of GDP", value: "18.0%", trend: "up", source: "CMS 2024" },
   { label: "Global Health Market", value: "$12.8T", trend: "up", source: "WHO" },
   { label: "Hospital Op Margin", value: "3.9%", trend: "up", source: "Kaufman Hall" },
   { label: "EBITDA % of NHE", value: "8.9%", trend: "down", source: "McKinsey 2024" },
   { label: "Medicare Advantage", value: "54%", trend: "up", source: "KFF" },
   { label: "VBC Spend Share", value: "42%", trend: "up", source: "HCPLAN" },
-  { label: "ACOs Active", value: "482", trend: "up", source: "CMS 2025" },
-  { label: "Lives in ACO REACH", value: "33M+", trend: "up", source: "CMS" },
+  { label: "MSSP ACOs Active", value: "476", trend: "up", source: "CMS 2025" },
+  { label: "Medicare ACO Lives", value: "11.2M", trend: "up", source: "CMS MSSP 2025" },
   { label: "Denial Rate (Avg)", value: "11.8%", trend: "up", source: "Change HC" },
   { label: "Prior-Auth Denials", value: "7.4%", trend: "up", source: "KFF MA" },
   { label: "Days in AR (Median)", value: "42.1", trend: "flat", source: "HFMA" },
@@ -30,7 +30,7 @@ const signals: TickerItem[] = [
   { label: "RN Vacancy Rate", value: "9.9%", trend: "down", source: "NSI 2025" },
   { label: "Physician Shortage 2036", value: "86K", trend: "up", source: "AAMC" },
   { label: "Cybersecurity Breaches", value: "725", trend: "up", source: "HHS OCR" },
-  { label: "Avg Breach Cost", value: "$10.9M", trend: "up", source: "IBM 2024" },
+  { label: "Avg Breach Cost", value: "$7.42M", trend: "down", source: "IBM 2025" },
   { label: "India GCC Headcount", value: "1.9M", trend: "up", source: "NASSCOM" },
   { label: "HC GCCs in India", value: "180+", trend: "up", source: "NASSCOM" },
   { label: "Telehealth CAGR", value: "24.3%", trend: "up", source: "MarketsandMarkets" },
@@ -49,7 +49,7 @@ export function IndustryTicker() {
     <div
       className="border-y border-border bg-muted/30 overflow-hidden relative"
       role="marquee"
-      aria-label="Live healthcare industry signals ticker"
+      aria-label="Curated healthcare industry signals"
     >
       <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
