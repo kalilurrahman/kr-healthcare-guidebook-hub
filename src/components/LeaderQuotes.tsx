@@ -46,6 +46,30 @@ const quotes: LeaderQuote[] = [
     role: "Senior VP, HFMA",
     context: "HFMA Annual Conference 2024",
   },
+  {
+    quote: "Interoperability is not a technology milestone; it is a governance agreement that happens to require software.",
+    author: "Micky Tripathi, PhD",
+    role: "Former National Coordinator for Health IT, ONC",
+    context: "On TEFCA and QHIN rollout, 2024",
+  },
+  {
+    quote: "We should hold algorithms to the same standard we hold drugs: show me the evidence, show me the population, show me what happens when it fails.",
+    author: "Dr. Robert Califf",
+    role: "Former Commissioner, US FDA",
+    context: "On clinical AI oversight, 2024",
+  },
+  {
+    quote: "The cyber event was not an IT incident. It was a cash-flow event that lasted weeks, and it taught every board that resilience is a treasury function.",
+    author: "Rick Pollack",
+    role: "President & CEO, American Hospital Association",
+    context: "On the 2024 clearinghouse outage",
+  },
+  {
+    quote: "Prior authorization reform will only feel real to a clinician when the answer arrives before the patient leaves the room.",
+    author: "Chiquita Brooks-LaSure",
+    role: "Former Administrator, CMS",
+    context: "On CMS-0057-F, 2024",
+  },
 ];
 
 export function LeaderQuotes() {

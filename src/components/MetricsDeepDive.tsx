@@ -61,6 +61,28 @@ const blocks: MetricBlock[] = [
       { label: "MFA Coverage (EHR access)", now: "78%", prior: "61%", benchmark: "100%", source: "HIMSS" },
     ],
   },
+  {
+    title: "GCC & Global Operating Model",
+    subtitle: "India-centric healthcare capability centers, FY25",
+    rows: [
+      { label: "Healthcare GCCs (India)", now: "180+", prior: "155", benchmark: "n/a", source: "NASSCOM" },
+      { label: "Attrition (RCM roles)", now: "18.6%", prior: "24.1%", benchmark: "< 15%", source: "NASSCOM FY25" },
+      { label: "Outcome-Owned Processes", now: "31%", prior: "22%", benchmark: "> 50%", source: "Everest Group" },
+      { label: "Automation Coverage", now: "38%", prior: "27%", benchmark: "> 60%", source: "Everest Group" },
+      { label: "Cost Arbitrage Retained", now: "56%", prior: "62%", benchmark: "n/a", source: "Zinnov" },
+    ],
+  },
+  {
+    title: "Patient Access & Experience",
+    subtitle: "Front-end capability, US ambulatory & acute",
+    rows: [
+      { label: "Digital Self-Scheduling", now: "41%", prior: "31%", benchmark: "> 60%", source: "KLAS 2025" },
+      { label: "Eligibility Auto-Verification", now: "88%", prior: "84%", benchmark: "> 98%", source: "CAQH Index" },
+      { label: "Prior-Auth Fully Electronic", now: "31%", prior: "28%", benchmark: "100%", source: "CAQH Index" },
+      { label: "Price Estimate Accuracy", now: "72%", prior: "64%", benchmark: "> 90%", source: "HFMA" },
+      { label: "Patient Bad Debt / Net Rev", now: "2.9%", prior: "2.4%", benchmark: "< 2%", source: "Kaufman Hall" },
+    ],
+  },
 ];
 
 function badge(value: string, benchmark: string) {
@@ -79,7 +101,7 @@ export function MetricsDeepDive() {
       <div className="mb-6">
         <h2 className="font-display text-xl font-bold text-foreground mb-2">Benchmarks Deep-Dive</h2>
         <p className="font-body text-sm text-muted-foreground max-w-2xl">
-          Twenty operational KPIs across revenue cycle, workforce, AI adoption and cyber risk — with prior-year comparison, top-quartile benchmark and primary source.
+          Thirty operational KPIs across revenue cycle, workforce, AI adoption, cyber risk, GCC maturity and patient access — with prior-year comparison, top-quartile benchmark and primary source.
         </p>
       </div>
 

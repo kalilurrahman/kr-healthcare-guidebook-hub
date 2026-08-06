@@ -5,6 +5,9 @@ import { transformationPillars } from "@/data/healthcare-data";
 import { CuratedSignals } from "@/components/CuratedSignals";
 import { LeaderQuotes } from "@/components/LeaderQuotes";
 import { MetricsDeepDive } from "@/components/MetricsDeepDive";
+import { PolicyWatch } from "@/components/PolicyWatch";
+import { PlaybookNotes } from "@/components/PlaybookNotes";
+import { GlossaryGrid } from "@/components/GlossaryGrid";
 
 interface OverviewSectionProps {
   onChapterSelect: (chapterId: string) => void;
@@ -252,11 +255,20 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
         </div>
       </div>
 
-      {/* Benchmarks deep-dive — 20 curated KPIs */}
+      {/* Benchmarks deep-dive — curated KPIs */}
       <MetricsDeepDive />
+
+      {/* Policy & regulatory watch */}
+      <PolicyWatch />
+
+      {/* Operating notes for the board */}
+      <PlaybookNotes />
 
       {/* Curated leadership quotes */}
       <LeaderQuotes />
+
+      {/* Working glossary */}
+      <GlossaryGrid />
 
 
 
