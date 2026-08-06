@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import { Citation } from "@/components/Citation";
 
 interface LeaderQuote {
   quote: string;
@@ -97,7 +98,9 @@ export function LeaderQuotes() {
             <figcaption className="mt-auto pt-3 border-t border-border">
               <div className="font-display text-sm font-semibold text-foreground">{q.author}</div>
               <div className="font-mono text-[10px] text-primary uppercase tracking-wider mt-0.5">{q.role}</div>
-              <div className="font-body text-[11px] text-muted-foreground mt-1">{q.context}</div>
+              <div className="font-body text-[11px] text-muted-foreground mt-1">
+                <Citation source={q.author} context={q.context} className="text-[11px]" />
+              </div>
             </figcaption>
           </motion.figure>
         ))}

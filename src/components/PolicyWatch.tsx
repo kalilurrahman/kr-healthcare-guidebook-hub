@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Citation } from "@/components/Citation";
 import { CalendarClock, Gavel, ShieldAlert, Network, FileSearch } from "lucide-react";
 
 interface PolicyItem {
@@ -91,7 +92,7 @@ export function PolicyWatch() {
                 <p className="font-body text-xs text-teal leading-relaxed">
                   <span className="font-mono text-[10px] uppercase tracking-wider">Do now · </span>{it.action}
                 </p>
-                <span className="font-mono text-[10px] text-muted-foreground/70 block mt-2">Source · {it.source}</span>
+                <span className="font-mono text-[10px] text-muted-foreground/70 block mt-2">Source · <Citation source={it.source} /></span>
               </div>
             </motion.div>
           );

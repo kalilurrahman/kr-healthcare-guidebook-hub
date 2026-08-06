@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Citation } from "@/components/Citation";
 
 interface MetricRow {
   label: string;
@@ -135,7 +136,7 @@ export function MetricsDeepDive() {
                     <td className={`p-2 text-right font-display font-bold ${badge(r.now, r.benchmark)}`}>{r.now}</td>
                     <td className="p-2 text-right font-mono text-muted-foreground hidden sm:table-cell">{r.prior}</td>
                     <td className="p-2 text-right font-mono text-primary">{r.benchmark}</td>
-                    <td className="p-2 pr-4 text-right font-mono text-[10px] text-muted-foreground hidden md:table-cell">{r.source}</td>
+                    <td className="p-2 pr-4 text-right font-mono text-[10px] text-muted-foreground hidden md:table-cell"><Citation source={r.source} /></td>
                   </tr>
                 ))}
               </tbody>
