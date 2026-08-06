@@ -101,7 +101,7 @@ export function MetricsDeepDive() {
       <div className="mb-6">
         <h2 className="font-display text-xl font-bold text-foreground mb-2">Benchmarks Deep-Dive</h2>
         <p className="font-body text-sm text-muted-foreground max-w-2xl">
-          Twenty operational KPIs across revenue cycle, workforce, AI adoption and cyber risk — with prior-year comparison, top-quartile benchmark and primary source.
+          Thirty operational KPIs across revenue cycle, workforce, AI adoption, cyber risk, GCC maturity and patient access — with prior-year comparison, top-quartile benchmark and primary source.
         </p>
       </div>
 
