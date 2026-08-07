@@ -264,14 +264,25 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
       {/* Policy & regulatory watch */}
       <PolicyWatch />
 
+      {/* Maturity ladder */}
+      <MaturityLadder />
+
       {/* Operating notes for the board */}
       <PlaybookNotes />
+
+      {/* Transformation case patterns */}
+      <CaseStudies />
 
       {/* Curated leadership quotes */}
       <LeaderQuotes />
 
       {/* Working glossary */}
       <GlossaryGrid />
+
+      {/* Primary-source reading list */}
+      <ReadingList />
+
+
 
 
 
