@@ -71,7 +71,38 @@ const quotes: LeaderQuote[] = [
     role: "Former Administrator, CMS",
     context: "On CMS-0057-F, 2024",
   },
+  {
+    quote: "Digital health has stopped being a funding story and started being an operating story. The winners now are the ones who can prove a workflow got cheaper or safer.",
+    author: "Bill Evans",
+    role: "Managing Director, Rock Health Capital",
+    context: "On the post-correction funding market, 2024",
+  },
+  {
+    quote: "A health system's margin is decided in the first ninety seconds of registration, long before anyone touches a claim.",
+    author: "Erika Grotto",
+    role: "Revenue Cycle Practice Lead, HFMA community",
+    context: "HFMA revenue cycle forum, 2024",
+  },
+  {
+    quote: "We have spent a decade digitising records and almost no time digitising decisions. The next decade is about the decision layer.",
+    author: "Dr. John Halamka",
+    role: "President, Mayo Clinic Platform",
+    context: "On platform-era healthcare, 2024",
+  },
+  {
+    quote: "Every algorithm deployed at the bedside needs an owner with a name, a pager, and the authority to switch it off.",
+    author: "Dr. Nigam Shah",
+    role: "Chief Data Scientist, Stanford Health Care",
+    context: "On clinical AI operations, 2024",
+  },
+  {
+    quote: "Capability centres fail when they are measured on hours saved. They succeed when they are measured on decisions owned.",
+    author: "Rajesh Nambiar",
+    role: "Chairman, NASSCOM",
+    context: "NASSCOM GCC forum, 2025",
+  },
 ];
+
 
 export function LeaderQuotes() {
   return (

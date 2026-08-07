@@ -8,6 +8,9 @@ import { MetricsDeepDive } from "@/components/MetricsDeepDive";
 import { PolicyWatch } from "@/components/PolicyWatch";
 import { PlaybookNotes } from "@/components/PlaybookNotes";
 import { GlossaryGrid } from "@/components/GlossaryGrid";
+import { CaseStudies } from "@/components/CaseStudies";
+import { MaturityLadder } from "@/components/MaturityLadder";
+import { ReadingList } from "@/components/ReadingList";
 
 interface OverviewSectionProps {
   onChapterSelect: (chapterId: string) => void;
@@ -261,14 +264,25 @@ export function OverviewSection({ onChapterSelect, onNavigateResources }: Overvi
       {/* Policy & regulatory watch */}
       <PolicyWatch />
 
+      {/* Maturity ladder */}
+      <MaturityLadder />
+
       {/* Operating notes for the board */}
       <PlaybookNotes />
+
+      {/* Transformation case patterns */}
+      <CaseStudies />
 
       {/* Curated leadership quotes */}
       <LeaderQuotes />
 
       {/* Working glossary */}
       <GlossaryGrid />
+
+      {/* Primary-source reading list */}
+      <ReadingList />
+
+
 
 
 
