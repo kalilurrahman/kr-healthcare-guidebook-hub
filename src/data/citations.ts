@@ -175,6 +175,43 @@ export const CITATIONS: Record<string, CitationSource> = {
     title: "CMS newsroom — prior authorization reform",
     url: "https://www.cms.gov/newsroom",
   },
+  aha: {
+    publisher: "American Hospital Association",
+    title: "AHA Environmental Scan & Cybersecurity Resources",
+    url: "https://www.aha.org/",
+    note: "Sector-level trend and resilience guidance for US hospitals and health systems.",
+  },
+  hcplan: {
+    publisher: "Health Care Payment Learning & Action Network",
+    title: "APM Measurement Effort",
+    url: "https://hcp-lan.org/apm-measurement-effort/",
+    note: "Annual measurement of US healthcare dollars flowing through value-based payment models.",
+  },
+  "bill evans": {
+    publisher: "Rock Health",
+    title: "Digital health funding commentary",
+    url: "https://rockhealth.com/insights/",
+  },
+  "erika grotto": {
+    publisher: "HFMA",
+    title: "HFMA revenue cycle forum commentary",
+    url: "https://www.hfma.org/revenue-cycle/",
+  },
+  "john halamka": {
+    publisher: "Mayo Clinic Platform",
+    title: "Mayo Clinic Platform perspectives on healthcare data and AI",
+    url: "https://www.mayoclinicplatform.org/",
+  },
+  "nigam shah": {
+    publisher: "Stanford Health Care",
+    title: "Stanford perspectives on clinical AI operations and evaluation",
+    url: "https://med.stanford.edu/",
+  },
+  "rajesh nambiar": {
+    publisher: "NASSCOM",
+    title: "NASSCOM GCC leadership commentary",
+    url: "https://nasscom.in/knowledge-center",
+  },
 };
 
 /** Resolve a free-text source label (e.g. "NSI 2025", "HFMA MAP Keys") to a primary source. */
